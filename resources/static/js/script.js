@@ -74,7 +74,8 @@ document.addEventListener('keydown', function(event) {
 
         let body = {
             scramble: document.getElementById('scramble').innerText,
-            time: document.getElementById('timer').innerText
+            time: document.getElementById('timer').innerText,
+            cube: document.getElementById('navbarDropdown').innerText
         }
 
         sendPost('http://localhost:8080/timer', JSON.stringify(body)).then(data => console.log(data));
