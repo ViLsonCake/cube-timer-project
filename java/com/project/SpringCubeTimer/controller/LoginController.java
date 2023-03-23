@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class LoginController {
 
-    private LoginService loginService;
+    private final LoginService loginService;
 
     @Autowired
     public LoginController(LoginService loginService) {
@@ -31,7 +31,7 @@ public class LoginController {
                             @RequestParam @Valid String password,
                             Model model, HttpServletResponse response) {
 
-        loginService.makeLogged(response);
+        loginService.makeLogged(response, username);
 
         return "redirect:/timer/3x3";
 

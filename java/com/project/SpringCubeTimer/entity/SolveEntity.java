@@ -1,6 +1,7 @@
 package com.project.SpringCubeTimer.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "solve")
@@ -10,12 +11,15 @@ public class SolveEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long solveId;
 
+    @NotEmpty
     @Column(name = "cube_variable")
     private String cube;
 
+    @NotEmpty
     @Column(name = "scramble")
     private String scramble;
 
+    @NotEmpty
     @Column(name = "time")
     private String time;
 

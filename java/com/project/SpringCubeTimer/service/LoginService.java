@@ -7,11 +7,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class LoginService {
 
-    public void makeLogged(HttpServletResponse response) {
-        Cookie cookie = new Cookie("isLogged", "true");
-        cookie.setMaxAge(toSeconds(7));
+    public void makeLogged(HttpServletResponse response, String username) {
+        Cookie authenticationCookie = new Cookie("isLogged", "true");
+        Cookie usernameCookie = new Cookie("username", username);
 
-        response.addCookie(cookie);
+        authenticationCookie.setMaxAge(toSeconds(7));
+
+        response.addCookie(authenticationCookie);
+        response.addCookie(usernameCookie);
     }
 
     public int toSeconds(int days) {

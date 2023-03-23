@@ -1,6 +1,11 @@
 package com.project.SpringCubeTimer.entity;
 
+import com.project.SpringCubeTimer.entity.consts.ValidationConst;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 import java.util.List;
 
@@ -12,10 +17,16 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
+    @NotEmpty(message = ValidationConst.USERNAME_EMPTY_MESSAGE)
+    @Size(min = 2, max = 20)
     private String username;
 
+    @NotEmpty(message = ValidationConst.PASSWORD_EMPTY_MESSAGE)
+    @Pattern(regexp = ValidationConst.REGEX_PASSWORD_PATTERN, message = ValidationConst.PASSWORD_NOT_VALID_MESSAGE)
     private String password;
 
+    @NotEmpty(message = ValidationConst.EMAIL_EMPTY_MESSAGE)
+    @Email(message = ValidationConst.EMAIL_NOT_VALID_MESSAGE)
     private String email;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")

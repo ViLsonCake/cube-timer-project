@@ -32,8 +32,10 @@ public class TimerController {
     }
 
     @PostMapping(consumes = MediaType.TEXT_PLAIN_VALUE)
-    public void getRequest(@RequestBody String body) {
+    public void getRequestFromJS(@CookieValue(name = "username", defaultValue = "UNKNOWN") String username,
+                           @RequestBody String body) {
         System.out.println(body);
+        System.out.println(username);
 
     }
 }
