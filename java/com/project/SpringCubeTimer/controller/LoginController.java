@@ -27,7 +27,6 @@ public class LoginController {
 
     @PostMapping("/login")
     public String loginUser(@RequestParam @Valid String username,
-                            @RequestParam @Valid String email,
                             @RequestParam @Valid String password,
                             Model model, HttpServletResponse response) {
 

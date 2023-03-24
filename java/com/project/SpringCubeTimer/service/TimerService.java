@@ -13,7 +13,7 @@ public class TimerService {
 
     public boolean isValidCube(String cube) {
         return switch (cube.toLowerCase()) {
-            case "2x2", "3x3", "4x4", "5x5", "6x6", "7x7", "pyraminx", "megaminx", "square-1", "clock" -> true;
+            case "2x2", "3x3", "4x4", "5x5", "6x6", "7x7" -> true;
             default -> false;
         };
     }
@@ -29,8 +29,9 @@ public class TimerService {
         return document.text().substring(13, document.text().length() - 2);
     }
 
-    public void timerPage(Model model, String cube) throws IOException, CubeNotValidException {
+    public void timerPage(Model model, String cube, String username) throws IOException, CubeNotValidException {
         model.addAttribute("cube", cube);
+        model.addAttribute("username", username);
         model.addAttribute("scramble", getRandomScramble(cube));
     }
 }
