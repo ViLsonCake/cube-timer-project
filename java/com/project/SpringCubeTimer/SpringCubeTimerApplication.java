@@ -9,5 +9,4 @@ public class SpringCubeTimerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringCubeTimerApplication.class, args);
 	}
-
 }

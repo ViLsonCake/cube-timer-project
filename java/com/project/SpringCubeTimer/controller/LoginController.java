@@ -30,9 +30,7 @@ public class LoginController {
                             @RequestParam @Valid String password,
                             Model model, HttpServletResponse response) {
 
-        loginService.makeLogged(response, username);
-
-        return "redirect:/timer/3x3";
+        return loginService.loginUser(username, password, response, model);
 
     }
 }

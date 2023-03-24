@@ -1,15 +1,28 @@
 package com.project.SpringCubeTimer.service;
 
+import com.project.SpringCubeTimer.entity.UserEntity;
 import com.project.SpringCubeTimer.exception.CubeNotValidException;
+import com.project.SpringCubeTimer.repository.UserRepository;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 
 import java.io.IOException;
 
 @Service
 public class TimerService {
+
+    private UserRepository userRepository;
+
+    @Autowired
+    public TimerService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public boolean isValidCube(String cube) {
         return switch (cube.toLowerCase()) {
@@ -34,4 +47,7 @@ public class TimerService {
         model.addAttribute("username", username);
         model.addAttribute("scramble", getRandomScramble(cube));
     }
+
+
+
 }

@@ -2,6 +2,7 @@ package com.project.SpringCubeTimer.controller;
 
 import com.project.SpringCubeTimer.entity.SolveEntity;
 import com.project.SpringCubeTimer.exception.CubeNotValidException;
+import com.project.SpringCubeTimer.repository.UserRepository;
 import com.project.SpringCubeTimer.service.TimerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -10,16 +11,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.List;
 
 @Controller
 @RequestMapping("/timer")
 public class TimerController {
 
+    private final UserRepository userRepository;
     private final TimerService timerService;
 
     @Autowired
-    public TimerController(TimerService timerService) {
+    public TimerController(UserRepository userRepository, TimerService timerService) {
+        this.userRepository = userRepository;
         this.timerService = timerService;
     }
 
@@ -51,7 +53,7 @@ public class TimerController {
         solve.setCube(data[2]);
 
         System.out.println(solve.toString());
-        System.out.println(username);
+
 
     }
 }
