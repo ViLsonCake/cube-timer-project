@@ -1,27 +1,27 @@
 package com.project.SpringCubeTimer.service;
 
-import com.project.SpringCubeTimer.entity.UserEntity;
+import com.project.SpringCubeTimer.entity.SolveEntity;
 import com.project.SpringCubeTimer.exception.CubeNotValidException;
+import com.project.SpringCubeTimer.repository.SolveRepository;
 import com.project.SpringCubeTimer.repository.UserRepository;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.validation.Valid;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 
 import java.io.IOException;
 
 @Service
 public class TimerService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final SolveRepository solveRepository;
 
     @Autowired
-    public TimerService(UserRepository userRepository) {
+    public TimerService(UserRepository userRepository, SolveRepository solveRepository) {
         this.userRepository = userRepository;
+        this.solveRepository = solveRepository;
     }
 
     public boolean isValidCube(String cube) {
@@ -48,6 +48,20 @@ public class TimerService {
         model.addAttribute("scramble", getRandomScramble(cube));
     }
 
+    public void saveSolve(String username, String body) {
 
+        // Remove first and last character
+        String output = body.substring(1, body.length() - 1);
+
+        // Split the request output
+        String[] data = output.split(",");
+
+        // Create output solve entity
+        SolveEntity solve = new SolveEntity(data[0], data[1], data[2], userRepository.findByUsername(username));
+
+        // Save solve
+        solveRepository.save(solve);
+
+    }
 
 }

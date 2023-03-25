@@ -38,22 +38,8 @@ public class TimerController {
     @PostMapping(consumes = MediaType.TEXT_PLAIN_VALUE)
     public void getRequestFromJS(@CookieValue(name = "username", defaultValue = "UNKNOWN") String username,
                            @RequestBody String body) {
-//        System.out.println(body);
-//        System.out.println(username);
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(body);
-        stringBuilder.deleteCharAt(0);
-        stringBuilder.deleteCharAt(stringBuilder.length() - 1);
 
-        String[] data = stringBuilder.toString().split(",");
-        SolveEntity solve = new SolveEntity();
-
-        solve.setScramble(data[0]);
-        solve.setTime(data[1]);
-        solve.setCube(data[2]);
-
-        System.out.println(solve.toString());
-
+        timerService.saveSolve(username, body);
 
     }
 }

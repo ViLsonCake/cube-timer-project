@@ -29,6 +29,13 @@ public class SolveEntity {
 
     public SolveEntity() {}
 
+    public SolveEntity(String scramble, String time, String cube, UserEntity user) {
+        this.scramble = scramble;
+        this.time = time;
+        this.cube = cube;
+        this.user = user;
+    }
+
     public Long getSolveId() {
         return solveId;
     }

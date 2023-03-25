@@ -72,12 +72,6 @@ document.addEventListener('keydown', function(event) {
         location.reload();
         element.classList.remove('ready');
 
-        // let body = {
-        //     scramble: document.getElementById('scramble').innerText,
-        //     time: document.getElementById('timer').innerText,
-        //     cube: document.getElementById('navbarDropdown').innerText
-        // }
-
         let body = document.getElementById('scramble').innerText + ',' + document.getElementById('timer').innerText + 
         ',' + document.getElementById('navbarDropdown').innerText;
 
