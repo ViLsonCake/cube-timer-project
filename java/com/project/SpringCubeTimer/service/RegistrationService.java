@@ -21,14 +21,15 @@ public class RegistrationService {
 
     public String register(UserEntity user, HttpServletResponse response, Model model) {
 
-        // If fields not valid redirect to registration
-//        if (bindingResult.hasFieldErrors())
-//            return "registration";
-
         if (userRepository.findByUsername(user.getUsername()) != null ||
                 userRepository.findByEmail(user.getEmail()) != null) {
             model.addAttribute("UserExistError", "User already exist");
-            return "redirect:/registration";
+            return "registration-page";
+        }
+
+        if (user.getUsername().equals("UNKNOWN")) {
+            model.addAttribute("invalidName", "Name is not valid");
+            return "registration-page";
         }
 
         // Save user to db and cookie session

@@ -26,8 +26,8 @@ public class TimerController {
     }
 
     @GetMapping("/{cube}")
-    public String timerPage(@CookieValue(name = "username") String username, @CookieValue(name = "isLogged", defaultValue = "false") boolean isLogged, @PathVariable("cube") String cube, Model model) throws IOException, CubeNotValidException {
-        if (!isLogged)
+    public String timerPage(@CookieValue(name = "username", defaultValue = "UNKNOWN") String username, @CookieValue(name = "isLogged", defaultValue = "false") boolean isLogged, @PathVariable("cube") String cube, Model model) throws IOException, CubeNotValidException {
+        if ((!isLogged) || username.equals("UNKNOWN"))
             return "redirect:/login";
 
         timerService.timerPage(model, cube, username);

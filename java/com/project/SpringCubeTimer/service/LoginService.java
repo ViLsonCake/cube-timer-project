@@ -21,6 +21,7 @@ public class LoginService {
         Cookie usernameCookie = new Cookie("username", username);
 
         authenticationCookie.setMaxAge(toSeconds(7));
+        usernameCookie.setMaxAge(toSeconds(7));
 
         response.addCookie(authenticationCookie);
         response.addCookie(usernameCookie);
