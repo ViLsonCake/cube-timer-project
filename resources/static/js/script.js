@@ -2,7 +2,7 @@ let timer;
 let element = document.getElementById('timer');
 
 let timerStartedNow = false,
-timerStopedNow = false;
+timerStoppedNow = false;
 
 function startTimer() {
     let time = 0;
