@@ -1,0 +1,118 @@
+body {
+  color: #fff;
+}
+
+a[class] {
+  text-decoration: none;
+  color: inherit;
+}
+
+.login-block {
+  background-color: #000;
+  min-width: 400px;
+  min-height: 600px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background: rgb(9,9,121);
+  background: linear-gradient(180deg, rgba(9,9,121,1) 35%, rgba(111,0,255,1) 100%);
+  padding: 12px 20px;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1440px;
+}
+
+.main {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-form input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: inherit;
+  min-width: 230px;
+  min-height: 30px;
+}
+
+.input-box:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.input-form input::placeholder {
+    color: #fff;
+    transition: all 0.1s ease-in;
+    font-size: 14px;
+    padding-left: 20px;
+}
+
+.input-form input:focus::placeholder {
+  color: transparent;
+}
+
+.check-box {
+  display: flex;
+  align-items: center;
+}
+
+.line {
+  min-width: 220px;
+  height: 1px;
+  background-color: #fff;
+} 
+
+.buttons {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.buttons button {
+  padding: 4px 16px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  background-color: transparent;
+  color: inherit;
+  transition: all 0.1s ease-in !important;
+  cursor: pointer;
+}
+
+.buttons a {
+  display: flex;
+  padding: 5px 10px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  background-color: transparent;
+  color: inherit;
+  transition: all 0.1s ease-in !important;
+  cursor: pointer;
+  margin-right: 80px;
+}
+
+.buttons a:hover {
+  color: #000;
+  background-color: #fff;
+}
+
+.buttons button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.link-buttons {
+  min-width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
