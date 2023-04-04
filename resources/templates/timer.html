@@ -12,19 +12,19 @@
 <body>
   <header class="header">
     <nav class="left-nav">
-      <a href="#" class="link-button"></a>
+      <a href="#" class="link-button" th:text="${username}"></a>
       <a href="#" class="link-button">Statistics</a>
       <a href="#" class="link-button">Settings</a>
       <div class="dropdown">
-        <a class="link">Cube</a>
+        <a class="link" th:text="${cube}"></a>
         <img src="/img/triangle.svg" alt="">
         <div class="dropdown-menu">
-          <a class="link__item-active" href="">2x2</a>
-          <a class="link__item" href="">3x3</a>
-          <a class="link__item" href="">4x4</a>
-          <a class="link__item" href="">5x5</a>
-          <a class="link__item" href="">6x6</a>
-          <a class="link__item" href="">7x7</a>
+          <a class="link__item-active" href="/timer/2x2">2x2</a>
+          <a class="link__item" href="/timer/3x3">3x3</a>
+          <a class="link__item" href="/timer/4x4">4x4</a>
+          <a class="link__item" href="/timer/5x5">5x5</a>
+          <a class="link__item" href="/timer/6x6">6x6</a>
+          <a class="link__item" href="/timer/7x7">7x7</a>
         </div>
       </div>
     </nav>
@@ -38,21 +38,21 @@
       </div>
   </form>
   </header>
-  <div class="scramble"></div>
+  <div th:text="${scramble}" class="scramble"></div>
   <section class="main-timer">
     <div class="timer-block">
       <div id="timer" class="timer">
         00:00
       </div>
       <div class="avg-of">
-        <span>AVG OF 5: </span>
+        <span>ao5: </span>
       </div>
       <div class="avg-of12">
-        <span class="avg-of">AVG OF 12: </span>
+        <span class="avg-of">ao12: </span>
       </div>
     </div>
   </section>
 
-  <script src="../static/js/script.js"></script>
+  <script src="/js/script.js"></script>
 </body>
 </html>

@@ -4,6 +4,7 @@ import com.project.SpringCubeTimer.entity.SolveEntity;
 import com.project.SpringCubeTimer.exception.CubeNotValidException;
 import com.project.SpringCubeTimer.repository.SolveRepository;
 import com.project.SpringCubeTimer.repository.UserRepository;
+import com.project.SpringCubeTimer.validate.RequestBodyValidation;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,11 +57,13 @@ public class TimerService {
         // Split the request output
         String[] data = output.split(",");
 
-        // Create output solve entity
-        SolveEntity solve = new SolveEntity(data[0], data[1], data[2], userRepository.findByUsername(username));
+        if (RequestBodyValidation.isValidTime(data[0]) && RequestBodyValidation.isValidCube(data[2])) {
+            // Create output solve entity if request body is valid
+            SolveEntity solve = new SolveEntity(data[0], data[1], data[2], userRepository.findByUsername(username));
 
-        // Save solve
-        solveRepository.save(solve);
+            // Save solve
+            solveRepository.save(solve);
+        }
 
     }
 
