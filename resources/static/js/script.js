@@ -83,3 +83,18 @@ document.addEventListener('keydown', function(event) {
 
 });
 
+// document.addEventListener("click", e => {
+//   const isDropdownText = e.target.matches("link")
+//   if (!isDropdownText && e.target.closest("dropdown") != null) return
+
+//   let currentDropdown
+//   if (isDropdownText) {
+//     currentDropdown = e.target.closest("dropdown")
+//     currentDropdown.classList.toggle("active")
+//   }
+
+//   document.querySelectorAll("dropdown.active").forEach(dropdown => {
+//     if (dropdown === currentDropdown) return
+//     dropdown.classList.remove("active")
+//   })
+// })
