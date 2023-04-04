@@ -36,7 +36,7 @@ public class LoginService {
         if (userRepository.findByUsername(username) == null ||
                 (!userRepository.findByUsername(username).getPassword().equals(password))) {
             model.addAttribute("loginError", "Incorrect login or password");
-            return "login-page";
+            return "login";
         }
 
         // Add user to cookie session

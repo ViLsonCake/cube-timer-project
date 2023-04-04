@@ -29,7 +29,7 @@ public class RegistrationService {
 
         if (user.getUsername().equals("UNKNOWN")) {
             model.addAttribute("invalidName", "Name is not valid");
-            return "registration-page";
+            return "registration";
         }
 
         // Save user to db and cookie session

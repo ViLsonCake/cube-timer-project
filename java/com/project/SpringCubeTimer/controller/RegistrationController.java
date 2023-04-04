@@ -24,7 +24,7 @@ public class RegistrationController {
 
     @GetMapping("/registration")
     public String showRegisterPage(Model model) {
-        return "registration-page";
+        return "registration";
     }
 
     @PostMapping("/registration")
