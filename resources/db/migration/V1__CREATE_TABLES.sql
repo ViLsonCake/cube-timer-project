@@ -17,7 +17,6 @@ CREATE TABLE user (
 CREATE TABLE solve (
     solve_id BIGINT NOT NULL AUTO_INCREMENT,
     scramble varchar(64) NOT NULL,
-    scramble varchar(255) NOT NULL,
     cube_variable varchar(64) NOT NULL,
     time varchar(64) NOT NULL,
 
