@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/timer.css">
-  <link rel="stylesheet" href="/css/reset.css">
-  <link rel="stylesheet" href="/css/font.css">
+  <link rel="stylesheet" href="../static/css/timer.css">
+  <link rel="stylesheet" href="../static/css/reset.css">
+  <link rel="stylesheet" href="../static/css/font.css">
   <title>Timer</title>
 </head>
 <body>
@@ -15,6 +15,18 @@
       <a href="#" class="link-button"></a>
       <a href="#" class="link-button">Statistics</a>
       <a href="#" class="link-button">Settings</a>
+      <div class="dropdown">
+        <a class="link">Cube</a>
+        <img src="../static/img/triangle.svg" alt="">
+        <div class="dropdown-menu">
+          <a class="link__item-active" href="">2x2</a>
+          <a class="link__item" href="">3x3</a>
+          <a class="link__item" href="">4x4</a>
+          <a class="link__item" href="">5x5</a>
+          <a class="link__item" href="">6x6</a>
+          <a class="link__item" href="">7x7</a>
+        </div>
+      </div>
     </nav>
     <form method="post">
       <div class="right-nav">
@@ -41,6 +53,6 @@
     </div>
   </section>
 
-  <script src="/js/script.js"></script>
+  <script src="../static/js/script.js"></script>
 </body>
 </html>
