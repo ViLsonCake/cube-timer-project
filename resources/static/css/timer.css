@@ -150,3 +150,108 @@ a[class] {
   transform: rotate(180deg);
 }
 
+body {
+  background: rgb(9,9,121);
+  background: linear-gradient(180deg, rgba(9,9,121,1) 35%, rgba(111,0,255,1) 100%);
+  color: #fff;
+}
+
+a[class] {
+  text-decoration: none;
+  color: #000;
+}
+
+.timer {
+  font-size: 200px;
+}
+
+.header {
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  min-height: 60px;
+}
+
+.line {
+  min-width: 220px;
+  height: 1px;
+  background-color: #000;
+} 
+
+.right-nav {
+  display: flex;
+  align-items: center;
+}
+
+.right-nav button {
+  padding: 4px 16px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  background-color: transparent;
+  color: #000;
+  transition: all 0.1s ease-in !important;
+  cursor: pointer;
+}
+
+.right-nav input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #000;
+}
+
+.right-nav input::placeholder {
+  color: #000;
+  transition: all 0.1s ease-in;
+  font-size: 16px;
+}
+
+.right-nav input:focus::placeholder {
+  color: transparent;
+}
+
+.right-nav button:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.link-button:not(:last-child) {
+  margin-right: 20px;
+}
+
+.main-timer{
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.timer-block{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.avg-of {
+  font-size: 40px;
+}
+
+.timer span {
+  font-size: 200px;
+}
+
+.input-box {
+  margin-right: 25px;
+}
+
+.scramble {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  color: #ababab;
+}

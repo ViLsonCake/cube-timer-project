@@ -4,31 +4,31 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../static/css/reset.css">
-  <link rel="stylesheet" href="../static/css/login.css">
-  <link rel="stylesheet" href="../static/css/font.css">
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/login.css">
+  <link rel="stylesheet" href="/css/font.css">
   <title>Login</title>
 </head>
 <body>
   <section class="main">
     <div class="container">
-      <form method="post"></form>
+      <form action="/login" method="post">
         <div class="login-block">
           <div class="logo">
               <h1>LOG IN</h1>
             </div>
           <div class="input-form">
               <div class="input-box">
-                <input type="text" class="input-field" placeholder="Username">
+                <input type="text" name="username" class="input-field" placeholder="Username">
                 <div class="line"></div>
               </div>
               <div class="input-box">
-                <input type="text" class="input-field" placeholder="Password">
+                <input type="password" name="password" class="input-field" placeholder="Password">
                 <div class="line"></div>
               </div>
             </div>
           <div class="buttons">
-              <a href="#" class="button-back">Back</a>
+              <a href="timer/3x3" class="button-back">Back</a>
               <button type="submit">Login</button>
             </div>
             <div class="link-buttons">
