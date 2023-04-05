@@ -17,13 +17,9 @@ public class LoginService {
     }
 
     public void makeLogged(HttpServletResponse response, String username) {
-        Cookie authenticationCookie = new Cookie("isLogged", "true");
         Cookie usernameCookie = new Cookie("username", username);
+        usernameCookie.setMaxAge(toSeconds(90));
 
-        authenticationCookie.setMaxAge(toSeconds(7));
-        usernameCookie.setMaxAge(toSeconds(7));
-
-        response.addCookie(authenticationCookie);
         response.addCookie(usernameCookie);
     }
 
@@ -54,5 +50,12 @@ public class LoginService {
         makeLogged(response, username);
 
         return "redirect:/timer/3x3";
+    }
+
+    public void logoutUser(HttpServletResponse response) {
+        Cookie usernameCookie = new Cookie("username", "UNKNOWN");
+        usernameCookie.setMaxAge(0);
+
+        response.addCookie(usernameCookie);
     }
 }

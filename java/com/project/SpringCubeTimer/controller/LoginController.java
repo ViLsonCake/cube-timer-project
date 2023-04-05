@@ -26,6 +26,13 @@ public class LoginController {
         return loginService.getLoginPage(username);
     }
 
+    @GetMapping("/logout")
+    public String logout(HttpServletResponse response) {
+        loginService.logoutUser(response);
+
+        return "redirect:/login";
+    }
+
     @PostMapping("/login")
     public String loginUser(@RequestParam @Valid String username,
                             @RequestParam @Valid String password,
