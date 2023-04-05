@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @Service
 public class TimerService {
@@ -44,9 +47,22 @@ public class TimerService {
     }
 
     public void timerPage(Model model, String cube, String username) throws IOException, CubeNotValidException {
+        // Get last user solve in table
+        Iterable<SolveEntity> solves = solveRepository.findAll();
+        List<SolveEntity> currentUserSolves = new ArrayList<>();
+
+        for (SolveEntity solve : solves) {
+            if (Objects.equals(userRepository.findByUsername(username).getUserId(), solve.getUser().getUserId())) {
+                currentUserSolves.add(solve);
+            }
+        }
+
+        // Add attributes
         model.addAttribute("cube", cube);
         model.addAttribute("username", username);
+        model.addAttribute("lastSolveTime", currentUserSolves.get(currentUserSolves.size() - 1).getTime());
         model.addAttribute("scramble", getRandomScramble(cube));
+        System.out.println(currentUserSolves.get(currentUserSolves.size() - 1).getTime());
     }
 
     public void saveSolve(String username, String body) {

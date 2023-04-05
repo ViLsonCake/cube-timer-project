@@ -41,7 +41,7 @@
   <div id="scramble" th:text="${scramble}" class="scramble"></div>
     <section class="main-timer">
       <div class="timer-block">
-        <div id="timer" class="timer">
+        <div id="timer" class="timer" th:text="${lastSolveTime}">
           00:00
         </div>
         <div class="avg-of">

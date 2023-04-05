@@ -1,6 +1,5 @@
 package com.project.SpringCubeTimer.controller;
 
-import com.project.SpringCubeTimer.entity.SolveEntity;
 import com.project.SpringCubeTimer.exception.CubeNotValidException;
 import com.project.SpringCubeTimer.repository.UserRepository;
 import com.project.SpringCubeTimer.service.TimerService;
@@ -29,6 +28,8 @@ public class TimerController {
     public String timerPage(@CookieValue(name = "username", defaultValue = "UNKNOWN") String username, @CookieValue(name = "isLogged", defaultValue = "false") boolean isLogged, @PathVariable("cube") String cube, Model model) throws IOException, CubeNotValidException {
         if ((!isLogged) || username.equals("UNKNOWN"))
             return "redirect:/login";
+
+        System.out.println("onload");
 
         timerService.timerPage(model, cube, username);
 

@@ -95,7 +95,6 @@ document.addEventListener('keydown', function(event) {
         cube = document.getElementById('cube');
 
         pause();
-//        location.reload();
         element.classList.remove('ready');
 
         // Make string body <scramble>,<time>,<cube>
@@ -103,6 +102,9 @@ document.addEventListener('keydown', function(event) {
         ',' + cube.innerText;
 
         sendPost('http://localhost:8080/timer', JSON.stringify(body)).then(data => console.log(data));
+        setInterval(200);
+        location.reload();
+        location.reload();
 
         // scramble.innerText = getRandomScramble("3x3");
     }
