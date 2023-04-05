@@ -70,12 +70,12 @@ document.addEventListener('keydown', function(event) {
     // Timer stopped
     if (event.code == 'Space' && timerStartedNow) {
         pause();
-        location.reload();
+//        location.reload();
         element.classList.remove('ready');
 
         // Make string body <scramble>,<time>,<cube>
         let body = document.getElementById('scramble').innerText + ',' + document.getElementById('timer').innerText + 
-        ',' + document.querySelector('link').innerText;
+        ',' + document.getElementById('cube').innerText;
 
         sendPost('http://localhost:8080/timer', JSON.stringify(body)).then(data => console.log(data));
     }

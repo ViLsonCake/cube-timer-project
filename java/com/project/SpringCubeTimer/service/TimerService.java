@@ -57,7 +57,7 @@ public class TimerService {
         // Split the request output
         String[] data = output.split(",");
 
-        if (RequestBodyValidation.isValidTime(data[0]) && RequestBodyValidation.isValidCube(data[2])) {
+        if (RequestBodyValidation.isValidTime(data[1]) && RequestBodyValidation.isValidCube(data[2])) {
             // Create output solve entity if request body is valid
             SolveEntity solve = new SolveEntity(data[0], data[1], data[2], userRepository.findByUsername(username));
 
