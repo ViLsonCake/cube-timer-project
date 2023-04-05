@@ -4,6 +4,10 @@ let element = document.getElementById('timer');
 let timerStartedNow = false,
 timerStoppedNow = false;
 
+location.onload = function() {
+    document.getElementById('scramble').innerText = getRandomScramble(document.getElementById('cube'));
+}
+
 function startTimer() {
     let time = 0;
 
@@ -54,6 +58,23 @@ function sendPost(url, body = null) {
     })
 }
 
+function getRandomScramble(cube) {
+    const url = "https://rubiks-cube-scramble-generator.onrender.com/api?puzzleType=" + cube,
+    headersParam = {
+        'Content-Type': 'application/json',
+        "Access-Control-Allow-Origin": '*',
+        "Access-Control-Allow-Credentials" : true,
+    }
+
+    return fetch(url, {
+        method: 'GET',
+        headers: headersParam,
+        mode: 'no-cors'
+    }).then(response => {
+        return JSON.stringify(response);
+    })
+}
+
 
 document.addEventListener('keyup', function(event) {
     if (event.code == 'Space' && (!timerStartedNow)) {
@@ -69,15 +90,21 @@ document.addEventListener('keyup', function(event) {
 document.addEventListener('keydown', function(event) {
     // Timer stopped
     if (event.code == 'Space' && timerStartedNow) {
+        let scramble = document.getElementById('scramble'),
+        timer = document.getElementById('timer'),
+        cube = document.getElementById('cube');
+
         pause();
 //        location.reload();
         element.classList.remove('ready');
 
         // Make string body <scramble>,<time>,<cube>
-        let body = document.getElementById('scramble').innerText + ',' + document.getElementById('timer').innerText + 
-        ',' + document.getElementById('cube').innerText;
+        let body = scramble.innerText + ',' + timer.innerText + 
+        ',' + cube.innerText;
 
         sendPost('http://localhost:8080/timer', JSON.stringify(body)).then(data => console.log(data));
+
+        // scramble.innerText = getRandomScramble("3x3");
     }
     // Timer ready to start
     else if (event.code == 'Space' && (!timerStartedNow))
