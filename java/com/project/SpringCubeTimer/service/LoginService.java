@@ -31,6 +31,17 @@ public class LoginService {
         return days * 24 * 60 * 60;
     }
 
+    public boolean isLogged(String username) {
+        return !username.equals("UNKNOWN");
+    }
+
+    // Get request
+    public String getLoginPage(String username) {
+        if (isLogged(username)) return "redirect:/timer/3x3";
+        return "login";
+    }
+
+    // Post request
     public String loginUser(String username, String password, HttpServletResponse response, Model model) {
         // If user not found or password is incorrect
         if (userRepository.findByUsername(username) == null ||
