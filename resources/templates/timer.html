@@ -38,21 +38,20 @@
       </div>
   </form>
   </header>
-  <div id="scramble" class="scramble" th:text="${scramble}"></div>
-  <section class="main-timer">
-    <div class="timer-block">
-      <div id="timer" class="timer">
-        00:00
+  <div id="scramble" th:text="${scramble}" class="scramble"></div>
+    <section class="main-timer">
+      <div class="timer-block">
+        <div id="timer" class="timer">
+          00:00
+        </div>
+        <div class="avg-of">
+          <span>ao5: </span>
+        </div>
+        <div class="avg-of12">
+          <span class="avg-of">ao12: </span>
+        </div>
       </div>
-      <div class="avg-of">
-        <span>ao5: </span>
-      </div>
-      <div class="avg-of12">
-        <span class="avg-of">ao12: </span>
-      </div>
-    </div>
-  </section>
-
+    </section>
   <script src="/js/script.js"></script>
 </body>
 </html>
