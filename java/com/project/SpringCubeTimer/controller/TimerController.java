@@ -29,8 +29,6 @@ public class TimerController {
         if ((!isLogged) || username.equals("UNKNOWN"))
             return "redirect:/login";
 
-        System.out.println("onload");
-
         timerService.timerPage(model, cube, username);
 
         return "timer";
