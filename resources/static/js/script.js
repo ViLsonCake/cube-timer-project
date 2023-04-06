@@ -13,23 +13,40 @@ function startTimer() {
 
     timer = setInterval(() => {
 
-    let seconds = Math.floor(time / 100);
-    let minutes = Math.floor(seconds / 60);
-    if (minutes > 0)
-        seconds = time % 60;
+    let minutes = Math.floor(time / (60 * 100)),
+    seconds = Math.floor((time / 100) % 60);
+    millis = time % 100;
 
-    let milliseconds = time % 100;
-
-    if (milliseconds < 10 && seconds < 10)
-        element.innerHTML = `0${seconds}:0${milliseconds}`;
-    else if (milliseconds < 10)
-        element.innerHTML = `${seconds}:0${milliseconds}`;
-    else if (seconds < 10)
-        element.innerHTML = `0${seconds}:${milliseconds}`;
-    else if (minutes > 0)
-        element.innerHTML = `${minutes}:${seconds}:${milliseconds}`;
-    else
-        element.innerHTML = `${seconds}:${milliseconds}`;
+    if (minutes == 0) {
+        if (seconds < 10 && millis < 10)
+            element.innerHTML = `0${seconds}:0${millis}`;
+        else if (seconds < 10 && millis >= 10)
+            element.innerHTML = `0${seconds}:${millis}`;
+        else if (seconds >= 10 && millis < 10)
+            element.innerHTML = `${seconds}:0${millis}`;
+        else if (seconds >= 10 && millis >= 10)
+            element.innerHTML = `${seconds}:${millis}`;
+    } else {
+        if (minutes < 10) {
+            if (seconds < 10 && millis < 10)
+                element.innerHTML = `0${minutes}:0${seconds}:0${millis}`;
+            else if (seconds < 10 && millis >= 10)
+                element.innerHTML = `0${minutes}:0${seconds}:${millis}`;
+            else if (seconds >= 10 && millis < 10)
+                element.innerHTML = `0${minutes}:${seconds}:0${millis}`;
+            else if (seconds >= 10 && millis >= 10)
+                element.innerHTML = `0${minutes}:${seconds}:${millis}`;
+        } else {
+            if (seconds < 10 && millis < 10)
+                element.innerHTML `${minutes}:0${seconds}:0${millis}`;
+            else if (seconds < 10 && millis >= 10)
+                element.innerHTML = `${minutes}:0${seconds}:${millis}`;
+            else if (seconds >= 10 && millis < 10)
+                element.innerHTML = `${minutes}:${seconds}:0${millis}`;
+            else if (seconds >= 10 && millis >= 10)
+                element.innerHTML = `${minutes}:${seconds}:${millis}`;
+        }
+    }
 
 
     time++;
