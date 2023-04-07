@@ -147,6 +147,11 @@ a[class] {
   align-items: center;
 }
 
+.left-nav img {
+  width: 25px;
+  height: 25px;
+}
+
 .dropdown:hover > .dropdown-menu {
   pointer-events: auto;
   opacity: 1;
@@ -154,4 +159,12 @@ a[class] {
 
 .dropdown:hover > img{
   transform: rotate(180deg);
+}
+
+.link-button .settings {
+  transition: all 220ms ease-in-out !important;
+}
+
+.link-button .settings:hover {
+  transform: rotate(90deg);
 }

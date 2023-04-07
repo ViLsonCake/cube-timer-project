@@ -4,17 +4,25 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/timer.css">
-  <link rel="stylesheet" href="/css/reset.css">
-  <link rel="stylesheet" href="/css/font.css">
+  <link rel="stylesheet" href="../static/css/timer.css">
+  <link rel="stylesheet" href="../static/css/reset.css">
+  <link rel="stylesheet" href="../static/css/font.css">
   <title>Timer</title>
 </head>
 <body>
   <header class="header">
     <nav class="left-nav">
-      <a href="#" class="link-button" th:text="${username}"></a>
-      <a href="#" class="link-button">Statistics</a>
-      <a href="#" class="link-button">Settings</a>
+      <div class="dropdown">
+        <a href="#" class="link-button" th:text="${username}">Hwesus</a>
+        <div class="dropdown-menu">
+          <a class="link__item" href="/profile">Profile</a>
+          <a class="link__item" href="/logout">Logout</a>
+        </div>
+        </div>
+      <a href="#" class="link-button">
+        <img class="settings" src="../static/img/settings.svg" alt=""></a>
+      <a href="#" class="link-button"><img src="../static/img/statistic.svg" alt=""></a>
+      
       <div class="dropdown">
         <a id="cube" class="link" th:text="${cube}"></a>
         <img src="/img/triangle.svg" alt="">
