@@ -131,8 +131,8 @@ public class TimerService {
 
     }
 
-    public String getAverageOf5(String username) {
-        List<SolveEntity> lastFiveSolve = solveRepository.getLastFiveSolveByUser_id(userRepository.findByUsername(username).getUserId());
+    public String getAverageOf5(String username, String cube) {
+        List<SolveEntity> lastFiveSolve = solveRepository.findLastFiveSolveByUserIdAndCube(userRepository.findByUsername(username).getUserId(), cube);
 
         // If user have less than 5 solves
         if (lastFiveSolve.size() < 5) {
@@ -153,8 +153,8 @@ public class TimerService {
         return convertToTime(totalTimeInMillis);
     }
 
-    public String getAverageOf12(String username) {
-        List<SolveEntity> lastFiveSolve = solveRepository.getLastTwelveSolveByUser_id(userRepository.findByUsername(username).getUserId());
+    public String getAverageOf12(String username, String cube) {
+        List<SolveEntity> lastFiveSolve = solveRepository.findLastTwelveSolveByUserIdAndCube(userRepository.findByUsername(username).getUserId(), cube);
 
         // If user have less than 12 solves
         if (lastFiveSolve.size() < 12) {
@@ -175,20 +175,24 @@ public class TimerService {
         return convertToTime(totalTimeInMillis);
     }
 
-    public void timerPage(Model model, String cube, String username) throws IOException, CubeNotValidException {
+    public String getLastTime(String username, String cube) {
         // Get last user solve in table
-        String time = solveRepository.findLastSolveByUserId(userRepository.findByUsername(username).getUserId()).getTime();
+        SolveEntity solveEntity = solveRepository.findLastSolveByUserIdAndCube(userRepository.findByUsername(username).getUserId(), cube);
 
         // If user don't have solve show empty timer
-        if (time == null)
-            time = "00:00";
+        if (solveEntity == null)
+            return "00:00";
 
+        return solveEntity.getTime();
+    }
+
+    public void timerPage(Model model, String cube, String username) throws IOException, CubeNotValidException {
         // Add attributes
         model.addAttribute("cube", cube);
         model.addAttribute("username", username);
-        model.addAttribute("lastSolveTime", time);
-        model.addAttribute("averageOf5", getAverageOf5(username));
-        model.addAttribute("averageOf12", getAverageOf12(username));
+        model.addAttribute("lastSolveTime", getLastTime(username, cube));
+        model.addAttribute("averageOf5", getAverageOf5(username, cube));
+        model.addAttribute("averageOf12", getAverageOf12(username, cube));
         model.addAttribute("scramble", getRandomScramble(cube));
     }
 
