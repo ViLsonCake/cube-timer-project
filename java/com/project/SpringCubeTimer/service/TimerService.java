@@ -148,13 +148,15 @@ public class TimerService {
             totalTimeInMillis += toSeconds(solve.getTime());
         }
         // Subtract the best and words result
-//        totalTimeInMillis -= getMaxTime(lastFiveSolve) - getMinTime(lastFiveSolve);
-        totalTimeInMillis -= (toSeconds(lastFiveSolve.stream().max(solveTimeCompare).get().getTime()) - toSeconds(lastFiveSolve.stream().min(solveTimeCompare).get().getTime()));
+        int secondsMax = toSeconds(lastFiveSolve.stream().max(solveTimeCompare).get().getTime());
+        int secondsMin = toSeconds(lastFiveSolve.stream().min(solveTimeCompare).get().getTime());
+
+        int timeWithoutMaxAndMin = totalTimeInMillis - secondsMin - secondsMax;
 
         // Get arithmetic mean
-        totalTimeInMillis /= 3;
+        timeWithoutMaxAndMin /= 3;
 
-        return convertToTime(totalTimeInMillis);
+        return convertToTime(timeWithoutMaxAndMin);
     }
 
     public String getAverageOf12(String username, String cube) {
@@ -171,12 +173,15 @@ public class TimerService {
             totalTimeInMillis += toSeconds(solve.getTime());
         }
         // Subtract the best and words result
-        totalTimeInMillis -= getMaxTime(lastFiveSolve) - getMinTime(lastFiveSolve);
+        int secondsMax = toSeconds(lastFiveSolve.stream().max(solveTimeCompare).get().getTime());
+        int secondsMin = toSeconds(lastFiveSolve.stream().min(solveTimeCompare).get().getTime());
+
+        int timeWithoutMaxAndMin = totalTimeInMillis - secondsMin - secondsMax;
 
         // Get arithmetic mean
-        totalTimeInMillis /= 10;
+        timeWithoutMaxAndMin /= 10;
 
-        return convertToTime(totalTimeInMillis);
+        return convertToTime(timeWithoutMaxAndMin);
     }
 
     public String getLastTime(String username, String cube) {
