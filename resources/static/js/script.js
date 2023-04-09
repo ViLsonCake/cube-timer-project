@@ -17,38 +17,9 @@ function startTimer() {
     seconds = Math.floor((time / 100) % 60);
     millis = time % 100;
 
-    if (minutes == 0) {
-        if (seconds < 10 && millis < 10)
-            element.innerHTML = `0${seconds}:0${millis}`;
-        else if (seconds < 10 && millis >= 10)
-            element.innerHTML = `0${seconds}:${millis}`;
-        else if (seconds >= 10 && millis < 10)
-            element.innerHTML = `${seconds}:0${millis}`;
-        else if (seconds >= 10 && millis >= 10)
-            element.innerHTML = `${seconds}:${millis}`;
-    } else {
-        if (minutes < 10) {
-            if (seconds < 10 && millis < 10)
-                element.innerHTML = `0${minutes}:0${seconds}:0${millis}`;
-            else if (seconds < 10 && millis >= 10)
-                element.innerHTML = `0${minutes}:0${seconds}:${millis}`;
-            else if (seconds >= 10 && millis < 10)
-                element.innerHTML = `0${minutes}:${seconds}:0${millis}`;
-            else if (seconds >= 10 && millis >= 10)
-                element.innerHTML = `0${minutes}:${seconds}:${millis}`;
-        } else {
-            if (seconds < 10 && millis < 10)
-                element.innerHTML `${minutes}:0${seconds}:0${millis}`;
-            else if (seconds < 10 && millis >= 10)
-                element.innerHTML = `${minutes}:0${seconds}:${millis}`;
-            else if (seconds >= 10 && millis < 10)
-                element.innerHTML = `${minutes}:${seconds}:0${millis}`;
-            else if (seconds >= 10 && millis >= 10)
-                element.innerHTML = `${minutes}:${seconds}:${millis}`;
-        }
-    }
-
-
+    element.innerHTML = (minutes < 10 ? minutes == 0 ? "" : "0" + minutes + ":" : minutes + ":") +
+                (seconds < 10 ? "0" + seconds + ":" : seconds + ":") +
+                (millis);
     time++;
     }, 10);
 }

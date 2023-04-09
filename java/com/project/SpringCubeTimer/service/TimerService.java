@@ -47,28 +47,6 @@ public class TimerService {
         return document.text().substring(13, document.text().length() - 2);
     }
 
-    public int getMaxTime(Iterable<SolveEntity> solves) {
-        int largest = 0;
-
-        for (SolveEntity solve : solves) {
-            if (toSeconds(solve.getTime()) > largest)
-                largest = toSeconds(solve.getTime());
-        }
-
-        return largest;
-    }
-
-    public int getMinTime(Iterable<SolveEntity> solves) {
-        int min = 0;
-
-        for (SolveEntity solve : solves) {
-            if (toSeconds(solve.getTime()) < min)
-                min = toSeconds(solve.getTime());
-        }
-
-        return min;
-    }
-
     public static int toSeconds(String time) {
         // Incorrect input
         if (!time.contains(":"))
@@ -76,62 +54,20 @@ public class TimerService {
 
         String[] minutesAndSeconds = time.split(":");
 
-        // Format seconds:millis
-        if (minutesAndSeconds.length == 2) {
-            int seconds = Integer.parseInt(minutesAndSeconds[0]);
-            int mills = Integer.parseInt(minutesAndSeconds[1]);
-
-            return seconds * 100 + mills;
-        // Format minutes:seconds:mills
-        } else if (minutesAndSeconds.length == 3) {
-            int minutes = Integer.parseInt(minutesAndSeconds[0]);
-            int seconds = Integer.parseInt(minutesAndSeconds[1]);
-            int mills = Integer.parseInt(minutesAndSeconds[2]);
-
-            return minutes * 60 * 100 + seconds * 100 + mills;
-        }
-
-        return -1;
+        return (minutesAndSeconds.length == 3 ? Integer.parseInt(minutesAndSeconds[0]) * 60 * 100 +
+                (Integer.parseInt(minutesAndSeconds[1]) * 100 + Integer.parseInt(minutesAndSeconds[2])) :
+                (Integer.parseInt(minutesAndSeconds[0]) * 100 + Integer.parseInt(minutesAndSeconds[1])));
     }
 
-    public String convertToTime(int timeInMillis) {
+    public static String convertToTime(int timeInMillis) {
+        // Getting time
         int minutes = timeInMillis / (60 * 100);
         int seconds = (timeInMillis / 100) % 60;
         int millis = timeInMillis % 100;
 
-        if (minutes == 0) {
-            if (seconds < 10 && millis < 10)
-                return "0" + seconds + ":0" + millis;
-            else if (seconds < 10 && millis >= 10)
-                return "0" + seconds + ":" + millis;
-            else if (seconds >= 10 && millis < 10)
-                return seconds + ":0" + millis;
-            else if (seconds >= 10 && millis >= 10)
-                return seconds + ":" + millis;
-        } else {
-            if (minutes < 10) {
-                if (seconds < 10 && millis < 10)
-                    return "0" + minutes + ":0" + seconds + ":0" + millis;
-                else if (seconds < 10 && millis > 10)
-                    return "0" + minutes + ":0" + seconds + ":" + millis;
-                else if (seconds > 10 && millis < 10)
-                    return "0" + minutes + ":" + seconds + ":0" + millis;
-                else if (seconds > 10 && millis > 10)
-                    return "0" + minutes + ":" + seconds + ":" + millis;
-            } else {
-                if (seconds < 10 && millis < 10)
-                    return minutes + ":0" + seconds + ":0" + millis;
-                else if (seconds < 10 && millis > 10)
-                    return minutes + ":0" + seconds + ":" + millis;
-                else if (seconds > 10 && millis < 10)
-                    return minutes + ":" + seconds + ":0" + millis;
-                else if (seconds > 10 && millis > 10)
-                    return minutes + ":" + seconds + ":" + millis;
-            }
-        }
-
-        return "";
-
+        return (minutes < 10 ? minutes == 0 ? "" : "0" + minutes + ":" : minutes + ":") +
+                (seconds < 10 ? "0" + seconds + ":" : seconds + ":") +
+                (millis);
     }
 
     public String getAverageOf5(String username, String cube) {
@@ -208,14 +144,14 @@ public class TimerService {
     public void saveSolve(String username, String body) {
 
         // Remove first and last character
-        String output = body.substring(1, body.length() - 1);
+        String validBody = body.substring(1, body.length() - 1);
 
         // Split the request output
-        String[] data = output.split(",");
+        String[] requestParameters = validBody.split(",");
 
-        if (RequestBodyValidation.isValidTime(data[1]) && RequestBodyValidation.isValidCube(data[2])) {
+        if (RequestBodyValidation.isValidTime(requestParameters[1]) && RequestBodyValidation.isValidCube(requestParameters[2])) {
             // Create output solve entity if request body is valid
-            SolveEntity solve = new SolveEntity(data[0], data[1], data[2], userRepository.findByUsername(username));
+            SolveEntity solve = new SolveEntity(requestParameters[0], requestParameters[1], requestParameters[2], userRepository.findByUsername(username));
 
             // Save solve
             solveRepository.save(solve);
