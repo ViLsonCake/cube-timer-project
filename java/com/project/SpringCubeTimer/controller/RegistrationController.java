@@ -7,7 +7,6 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,12 +33,8 @@ public class RegistrationController {
                                    @RequestParam String confirmPassword,
                                    HttpServletResponse response,
                                    Model model) {
-
-        if (!password.equals(confirmPassword)) {
-            model.addAttribute("passwordError", "Password not equals");
-        }
-
-        return registrationService.register(new UserEntity(username, email, password), response, model);
+        return registrationService.register(new UserEntity(username.trim(), email.trim(), password.trim()),
+                confirmPassword, response, model);
 
     }
 

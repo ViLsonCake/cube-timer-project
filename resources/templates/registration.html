@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,6 +34,9 @@
                 <input type="password" name="confirmPassword" class="input-field" placeholder="Confirm password">
                 <div class="line"></div>
               </div>
+              <span th:text="${passwordError}"></span>
+              <span th:text="${UserExistError}"></span>
+              <span th:text="${invalidName}"></span>
             </div>
             <div class="buttons">
               <a href="/timer/3x3" class="button-back">Back</a>

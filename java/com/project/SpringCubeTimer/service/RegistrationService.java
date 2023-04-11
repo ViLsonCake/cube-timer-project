@@ -19,12 +19,18 @@ public class RegistrationService {
         this.loginService = loginService;
     }
 
-    public String register(UserEntity user, HttpServletResponse response, Model model) {
+    public String register(UserEntity user, String confirmPassword, HttpServletResponse response, Model model) {
+
+        // Check invalid values
+        if (!user.getPassword().equals(confirmPassword)) {
+            model.addAttribute("passwordError", "Password don't equals");
+            return "registration";
+        }
 
         if (userRepository.findByUsername(user.getUsername()) != null ||
                 userRepository.findByEmail(user.getEmail()) != null) {
             model.addAttribute("UserExistError", "User already exist");
-            return "registration-page";
+            return "registration";
         }
 
         if (user.getUsername().equals("UNKNOWN")) {
