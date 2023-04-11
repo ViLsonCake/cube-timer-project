@@ -38,7 +38,7 @@ public class LoginController {
                             @RequestParam @Valid String password,
                             Model model, HttpServletResponse response) {
 
-        return loginService.loginUser(username, password, response, model);
+        return loginService.loginUser(username.trim(), password.trim(), response, model);
 
     }
 }
