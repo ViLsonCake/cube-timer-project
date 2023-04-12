@@ -17,4 +17,7 @@ public interface SolveRepository extends JpaRepository<SolveEntity, Long> {
 
     @Query(value = "SELECT * FROM solve s WHERE s.user_id = :userId AND s.cube_variable = :cube ORDER BY s.solve_id DESC LIMIT 12", nativeQuery = true)
     List<SolveEntity> findLastTwelveSolveByUserIdAndCube(Long userId, String cube);
+
+    @Query(value = "SELECT user_id, AVG(time) FROM solve s GROUP BY s.user_id ORDER BY AVG(s.time) LIMIT 15", nativeQuery = true)
+    List<String[]> findTopUsers();
 }
