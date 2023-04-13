@@ -2,7 +2,8 @@ let timer;
 let element = document.getElementById('timer');
 
 let timerStartedNow = false,
-timerStoppedNow = false;
+timerStoppedNow = false,
+anyKeyPressed = false;
 
 location.onload = function() {
     document.getElementById('scramble').innerText = getRandomScramble(document.getElementById('cube'));
@@ -19,7 +20,7 @@ function startTimer() {
 
     element.innerHTML = (minutes < 10 ? minutes == 0 ? "" : "0" + minutes + ":" : minutes + ":") +
                 (seconds < 10 ? "0" + seconds + ":" : seconds + ":") +
-                (millis);
+                (millis < 10 ? "0" + millis : millis);
     time++;
     }, 10);
 }
@@ -33,7 +34,6 @@ function sendPost(url, body = null) {
         'Content-Type': 'application/json',
         "Access-Control-Allow-Origin": '*',
         "Access-Control-Allow-Credentials" : true,
-        //"Access-Control-Allow-Methods": "GET, OPTIONS, POST, PUT"
     }
 
     return fetch(url, {
@@ -65,7 +65,7 @@ function getRandomScramble(cube) {
 
 
 document.addEventListener('keyup', function(event) {
-    if (event.code == 'Space' && (!timerStartedNow)) {
+    if (event.code == 'Space' && (!timerStartedNow) && anyKeyPressed) {
         startTimer();
         timerStartedNow = true;
     } else
@@ -76,8 +76,11 @@ document.addEventListener('keyup', function(event) {
 });
 
 document.addEventListener('keydown', function(event) {
+    if (event.code == 'Space')
+        anyKeyPressed = true;
     // Timer stopped
     if (event.code == 'Space' && timerStartedNow) {
+
         let scramble = document.getElementById('scramble'),
         timer = document.getElementById('timer'),
         cube = document.getElementById('cube');
@@ -90,11 +93,7 @@ document.addEventListener('keydown', function(event) {
         ',' + cube.innerText;
 
         sendPost('http://localhost:8080/timer', JSON.stringify(body)).then(data => console.log(data));
-        setInterval(200);
         location.reload();
-        location.reload();
-
-        // scramble.innerText = getRandomScramble("3x3");
     }
     // Timer ready to start
     else if (event.code == 'Space' && (!timerStartedNow))
