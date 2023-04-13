@@ -5,10 +5,12 @@ import com.project.SpringCubeTimer.entity.SolveEntity;
 import com.project.SpringCubeTimer.exception.CubeNotValidException;
 import com.project.SpringCubeTimer.repository.SolveRepository;
 import com.project.SpringCubeTimer.repository.UserRepository;
+import com.project.SpringCubeTimer.service.serviceConst.ServiceConst;
 import com.project.SpringCubeTimer.validate.RequestBodyValidation;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -21,6 +23,9 @@ public class TimerService {
     private final UserRepository userRepository;
     private final SolveRepository solveRepository;
     private final SolveTimeCompare solveTimeCompare;
+
+    @Value("${ScrambleApi.url}")
+    private String constApiUrl;
 
     @Autowired
     public TimerService(UserRepository userRepository, SolveRepository solveRepository, SolveTimeCompare solveTimeCompare) {
@@ -40,11 +45,13 @@ public class TimerService {
         if (!isValidCube(cube))
             throw new CubeNotValidException("Cube is not valid");
 
-        String url = "https://rubiks-cube-scramble-generator.onrender.com/api?puzzleType=" + cube;
+        String url = constApiUrl + cube;
 
-        Document document = Jsoup.connect(url).ignoreContentType(true).get();
+//        Document document = Jsoup.connect(url).ignoreContentType(true).get();
+        Document document = Jsoup.connect(url).get();
 
-        return document.text().substring(13, document.text().length() - 2);
+//        return document.text().substring(13, document.text().length() - 2);
+        return document.text();
     }
 
     public static int toSeconds(String time) {
@@ -67,7 +74,7 @@ public class TimerService {
 
         return (minutes < 10 ? minutes == 0 ? "" : "0" + minutes + ":" : minutes + ":") +
                 (seconds < 10 ? "0" + seconds + ":" : seconds + ":") +
-                (millis);
+                (millis < 10 ? "0" + millis : millis);
     }
 
     public String getAverageOf5(String username, String cube) {
