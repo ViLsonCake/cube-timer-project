@@ -7,6 +7,9 @@ import java.util.regex.Pattern;
 
 public class RequestBodyValidation {
     public static boolean isValidCube(String cube) {
+        if (cube.equalsIgnoreCase("pyraminx"))
+            return true;
+
         Pattern cubePatter = Pattern.compile(BodyValidationConst.CUBE_REGEX);
         Matcher cubeMatcher = cubePatter.matcher(cube);
 

@@ -36,7 +36,7 @@ public class TimerService {
 
     public boolean isValidCube(String cube) {
         return switch (cube.toLowerCase()) {
-            case "2x2", "3x3", "4x4", "5x5", "6x6", "7x7" -> true;
+            case "2x2", "3x3", "4x4", "5x5", "6x6", "7x7", "pyraminx" -> true;
             default -> false;
         };
     }
