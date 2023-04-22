@@ -1,4 +1,6 @@
 body {
+  background: rgb(9,9,121);
+  background: linear-gradient(180deg, rgba(9,9,121,1) 35%, rgb(187, 0, 255) 100%);
   color: #fff;
 }
 
@@ -19,6 +21,9 @@ a[class] {
   background: rgb(9,9,121);
   background: linear-gradient(180deg, rgba(9,9,121,1) 35%, rgba(111,0,255,1) 100%);
   padding: 12px 20px;
+  position: relative;
+  z-index: 2;
+  box-shadow: 9px 9px 2px 1px rgba(0, 0, 57, 0.2)
 }
 
 .container {
@@ -31,6 +36,9 @@ a[class] {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(100px) grayscale(30%);
 }
 
 .input-form {
