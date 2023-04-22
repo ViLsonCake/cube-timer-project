@@ -106,6 +106,15 @@ a[class] {
   text-align: center;
 }
 
+.scramble.mini {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  color: #ababab;
+  text-align: center;
+}
+
 .dropdown {
   position: relative;
   display: flex;
