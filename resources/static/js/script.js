@@ -1,15 +1,27 @@
-let timer;
-let element = document.getElementById('timer');
+let timer,
+element = document.getElementById('timer');
+scrambleElement = document.getElementById('scramble');
 
 let timerStartedNow = false,
 timerStoppedNow = false,
 anyKeyPressed = false;
 
-location.onload = function() {
-    document.getElementById('scramble').innerText = getRandomScramble(document.getElementById('cube'));
+document.onload = function() {
+    scrambleElement.innerText = getRandomScramble(document.getElementById('cube'));
 }
 
+minimizeScrambleSizeIfNeed();
+
+
+function minimizeScrambleSizeIfNeed() {
+    if (scrambleElement.innerText.split(' ').length > 40)
+        scrambleElement.classList.add('mini');
+}
+
+
 function startTimer() {
+    scrambleElement.classList.add('mini');
+
     let time = 0;
 
     timer = setInterval(() => {
