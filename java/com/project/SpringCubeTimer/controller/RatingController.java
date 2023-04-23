@@ -6,7 +6,9 @@ import com.project.SpringCubeTimer.service.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -19,9 +21,9 @@ public class RatingController {
         this.ratingService = ratingService;
     }
 
-    @GetMapping("/rating")
-    public String ratingPage(@RequestParam("cube") String cube, Model model) {
+    @GetMapping("/rating/{cube}")
+    public String ratingPage(@CookieValue(name = "username", defaultValue = "UNKNOWN") String username, @PathVariable("cube") String cube, Model model) {
 
-        return ratingService.getTopFifteenOrLessUsers(cube, model);
+        return ratingService.getTopFifteenOrLessUsers(username, cube, model);
     }
 }

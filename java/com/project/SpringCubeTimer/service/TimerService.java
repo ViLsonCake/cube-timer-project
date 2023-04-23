@@ -47,10 +47,8 @@ public class TimerService {
 
         String url = constApiUrl + cube;
 
-//        Document document = Jsoup.connect(url).ignoreContentType(true).get();
         Document document = Jsoup.connect(url).get();
 
-//        return document.text().substring(13, document.text().length() - 2);
         return document.text();
     }
 

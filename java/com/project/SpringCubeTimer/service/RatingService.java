@@ -29,13 +29,7 @@ public class RatingService {
         this.averageTimeComparator = averageTimeComparator;
     }
 
-    public String getTopFifteenOrLessUsers(String cube, Model model) {
-//        List<String[]> topUsers = solveRepository.findTopUsers();
-//
-//        for (String[] value : topUsers) {
-//            value[0] = userRepository.findById(Long.parseLong(value[0])).get().getUsername();   // Replacing the user id with a username
-//            value[1] = String.format("%.2f", Double.parseDouble(value[1])); // Round to the second decimal place
-//        }
+    public String getTopFifteenOrLessUsers(String cookieUsername, String cube, Model model) {
         Iterable<UserEntity> users = userRepository.findAll();
 
         // Output list
@@ -44,6 +38,10 @@ public class RatingService {
         for (UserEntity user : users) {
             // Find all user solves
             List<SolveEntity> userSolves = solveRepository.findAllSolveByIdAndCube(user.getUserId(), cube);
+
+            // If user don't have solves
+            if (userSolves.isEmpty())
+                continue;
 
             // User values
             String username = user.getUsername();
@@ -60,6 +58,7 @@ public class RatingService {
             topUsers.subList(0, 15);
 
         model.addAttribute("users", topUsers);
+        model.addAttribute("username", cookieUsername);
 
         return "rating";
     }

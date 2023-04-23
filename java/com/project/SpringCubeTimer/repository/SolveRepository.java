@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface SolveRepository extends JpaRepository<SolveEntity, Long> {
 
-    @Query(value = "SELECT time FROM solve s WHERE s.user_id = :user_id AND s.cube_variable = :cube", nativeQuery = true)
+    @Query(value = "SELECT * FROM solve s WHERE s.user_id = :user_id AND s.cube_variable = :cube", nativeQuery = true)
     List<SolveEntity> findAllSolveByIdAndCube(Long user_id, String cube);
 
     @Query(value = "SELECT * FROM solve s WHERE s.user_id = :user_id AND s.cube_variable = :cube ORDER BY s.solve_id DESC LIMIT 1", nativeQuery = true)
@@ -21,6 +21,4 @@ public interface SolveRepository extends JpaRepository<SolveEntity, Long> {
     @Query(value = "SELECT * FROM solve s WHERE s.user_id = :userId AND s.cube_variable = :cube ORDER BY s.solve_id DESC LIMIT 12", nativeQuery = true)
     List<SolveEntity> findLastTwelveSolveByUserIdAndCube(Long userId, String cube);
 
-    @Query(value = "SELECT user_id, time FROM solve s GROUP BY s.user_id ORDER BY AVG(s.time) LIMIT 15", nativeQuery = true)
-    List<String[]> findTopUsers();
 }
