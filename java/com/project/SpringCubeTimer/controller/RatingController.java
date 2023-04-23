@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class RatingController {
@@ -19,8 +20,8 @@ public class RatingController {
     }
 
     @GetMapping("/rating")
-    public String ratingPage(Model model) {
+    public String ratingPage(@RequestParam("cube") String cube, Model model) {
 
-        return "";
+        return ratingService.getTopFifteenOrLessUsers(cube, model);
     }
 }
