@@ -4,19 +4,19 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/rating.css">
-  <link rel="stylesheet" href="/css/reset.css">
-  <link rel="stylesheet" href="/css/font.css">
+  <link rel="stylesheet" href="../static/css/rating.css">
+  <link rel="stylesheet" href="../static/css/reset.css">
+  <link rel="stylesheet" href="../static/css/font.css">
   <title>Rating</title>
 </head>
 <body>
   <header class="header">
     <div class="navbar">
         <div class="button">
-          <a href="" class="link-button">Back</a>
+          <a href="/timer/3x3" class="link-button">Timer</a>
         </div>
         <div class="user-nickname">
-          <span>Nickname</span>
+          <a href="/profile" class="nickname">Nickname</a>
         </div>
     </div>
   </header>
@@ -32,10 +32,9 @@
               <div class="info">
                 <table>
                   <tr class="info-label">
-                    <th>NICKNAME</th>
+                    <th>USERNAME</th>
                     <th>PB</th>
                     <th>AVG</th>
-                    <th>AO12</th>
                   </tr>
                   <tr>
                     <td th:text="${user[0]}"></td>
@@ -51,17 +50,38 @@
         <div class="filter">
           <div class="filter-box">
             <form method="post">
-              <fieldset>
-                <input type="radio" value="2x2" name="sizeCube" checked> <label for="2x2">2x2</label>
-                <input type="radio" value="3x3" name="sizeCube" checked> <label for="3x3">3x3</label>
-                <input type="radio" value="4x4" name="sizeCube" checked> <label for="4x4">4x4</label>
-                <input type="radio" value="5x5" name="sizeCube">
-                <label for="5x5">5x5</label>
-                <input type="radio" value="6x6" name="sizeCube">
-                <label for="6x6">6x6</label>
-                <input type="radio" value="7x7" name="sizeCube" checked> <label for="7x7">7x7</label>
-                <input type="radio" value="Pyraminx" name="sizeCube" checked> <label for="Pyraminx">Pyraminx</label>
-              </fieldset>
+              <div class="filter-list">
+                <fieldset>
+                  <div class="radiobutton">
+                    <input type="radio" value="2x2" name="sizeCube">
+                    <label for="2x2">2x2</label>
+                  </div>
+                  <div class="radiobutton">
+                    <input type="radio" value="3x3" name="sizeCube" checked>
+                    <label for="3x3">3x3</label>
+                  </div>
+                  <div class="radiobutton">
+                    <input type="radio" value="4x4" name="sizeCube">
+                    <label for="4x4">4x4</label>
+                  </div>
+                  <div class="radiobutton">
+                    <input type="radio" value="5x5" name="sizeCube">
+                    <label for="5x5">5x5</label>
+                  </div>
+                  <div class="radiobutton">
+                    <input type="radio" value="6x6" name="sizeCube">
+                    <label for="6x6">6x6</label>
+                  </div>
+                  <div class="radiobutton">
+                    <input type="radio" value="7x7" name="sizeCube">
+                    <label for="7x7">7x7</label>
+                  </div>
+                  <div class="radiobutton">
+                    <input type="radio" value="Pyraminx" name="sizeCube">
+                    <label for="Pyraminx">Pyraminx</label>
+                  </div>
+                </fieldset>
+              </div>
             </form>
           </div>
         </div>
