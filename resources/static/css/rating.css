@@ -1,7 +1,7 @@
 body {
   background: rgb(9,9,121);
   background: linear-gradient(180deg, rgba(9,9,121,1) 35%, rgba(111,0,255,1) 100%);
-  color: #000;
+  color: #fff;
 }
 
 fieldset {
@@ -50,7 +50,7 @@ a[class] {
 .box-user {
   min-width: 350px;
   min-height: 120px;
-  background: #8258BA;
+  background: #5C5CBC;
   border-radius: 15px;
   margin-bottom: 15px;
   display: flex;
@@ -71,7 +71,7 @@ a[class] {
 .filter-box {
   min-width: 500px;
   min-height: 400px;
-  background-color: #8258BA;
+  background-color: #5C5CBC;
   border-radius: 15px;
   position: sticky;
   top: 20px;
@@ -98,3 +98,18 @@ input:checked {
   border: 6px solid black;
 }
 
+.filter-list fieldset {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.filter-list {
+  display: flex;
+  max-width: 210px;
+  font-size: 24px;
+}
+
+.radiobutton {
+  margin: 0px 10px 5px 0px;
+}
