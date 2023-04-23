@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,9 +24,9 @@
     <div class="container">
       <div class="hero">
         <div class="user-info">
-          <div class="box-user">
+          <div th:each="user : ${users}" class="box-user">
             <div class="image">
-              <img src="../static/img/person.svg" alt="Image">
+              <img src="/img/person.svg" alt="Image">
             </div>
             <div class="rating-info">
               <div class="info">
@@ -34,13 +34,13 @@
                   <tr class="info-label">
                     <th>NICKNAME</th>
                     <th>PB</th>
-                    <th>AO5</th>
+                    <th>AVG</th>
                     <th>AO12</th>
                   </tr>
                   <tr>
-                    <td>Hwes</td>
-                    <td>12s</td>
-                    <td>30s</td>
+                    <td th:text="${user[0]}"></td>
+                    <td th:text="${user[2]}"></td>
+                    <td th:text="${user[1]}"></td>
                     <td>40s</td>
                   </tr>
                 </table>
