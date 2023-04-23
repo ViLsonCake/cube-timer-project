@@ -85,7 +85,7 @@ a[class] {
 
 .buttons button {
   border: 1px solid #fff;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: transparent;
   color: inherit;
   transition: all 0.1s ease-in !important;
@@ -98,7 +98,7 @@ a[class] {
   display: flex;
   padding: 5px 8px;
   border: 1px solid #fff;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: transparent;
   color: inherit;
   transition: all 0.1s ease-in !important;

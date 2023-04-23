@@ -7,6 +7,9 @@
   <link rel="stylesheet" href="../static/css/rating.css">
   <link rel="stylesheet" href="../static/css/reset.css">
   <link rel="stylesheet" href="../static/css/font.css">
+  <link rel="stylesheet" href="/css/rating.css">
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/font.css">
   <title>Rating</title>
 </head>
 <body>
@@ -22,10 +25,49 @@
   </header>
   <section class="rating">
     <div class="container">
-      <div class="user-info">
-        <div class="box-user"></div>
-        <div class="box-user"></div>
-        <div class="box-user"></div>
+      <div class="hero">
+        <div class="user-info">
+          <div class="box-user">
+            <div class="image">
+              <img src="../static/img/person.svg" alt="Image">
+            </div>
+            <div class="rating-info">
+              <div class="info">
+                <table>
+                  <tr class="info-label">
+                    <th>NICKNAME</th>
+                    <th>PB</th>
+                    <th>AO5</th>
+                    <th>AO12</th>
+                  </tr>
+                  <tr>
+                    <td>Hwes</td>
+                    <td>12s</td>
+                    <td>30s</td>
+                    <td>40s</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="filter">
+          <div class="filter-box">
+            <form method="post">
+              <fieldset>
+                <input type="radio" value="2x2" name="sizeCube" checked> <label for="2x2">2x2</label>
+                <input type="radio" value="3x3" name="sizeCube" checked> <label for="3x3">3x3</label>
+                <input type="radio" value="4x4" name="sizeCube" checked> <label for="4x4">4x4</label>
+                <input type="radio" value="5x5" name="sizeCube">
+                <label for="5x5">5x5</label>
+                <input type="radio" value="6x6" name="sizeCube">
+                <label for="6x6">6x6</label>
+                <input type="radio" value="7x7" name="sizeCube" checked> <label for="7x7">7x7</label>
+                <input type="radio" value="Pyraminx" name="sizeCube" checked> <label for="Pyraminx">Pyraminx</label>
+              </fieldset>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   </section>

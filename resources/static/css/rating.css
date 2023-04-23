@@ -1,7 +1,11 @@
 body {
   background: rgb(9,9,121);
   background: linear-gradient(180deg, rgba(9,9,121,1) 35%, rgba(111,0,255,1) 100%);
-  color: #fff;
+  color: #000;
+}
+
+fieldset {
+  border: none;
 }
 
 a[class] {
@@ -44,15 +48,53 @@ a[class] {
 }
 
 .box-user {
-  width: 300px;
-  height: 100px;
-  background-color: #fff;
-  border: 1px solid #000;
+  min-width: 350px;
+  min-height: 120px;
+  background: #8258BA;
   border-radius: 15px;
   margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .user-info {
   display: flex;
   flex-direction: column;
 }
+
+.hero {
+  display: flex;
+  justify-content: space-around;
+}
+
+.filter-box {
+  min-width: 500px;
+  min-height: 400px;
+  background-color: #8258BA;
+  border-radius: 15px;
+  position: sticky;
+  top: 20px;
+}
+
+.image img {
+  min-width: 30px;
+  min-height: 30px;
+}
+
+.filter-box input {
+  appearance: none;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #fff;
+  transition: 0.2s all linear;
+  margin-right: 5px;
+  position: relative;
+  top: 1px;
+}
+
+input:checked {
+  border: 6px solid black;
+}
+
