@@ -45,6 +45,11 @@ a[class] {
   color: #000;
 }
 
+.right-nav img {
+  width: 53px;
+  height: 40px;
+}
+
 .right-nav input::placeholder {
   color: #000;
   transition: all 0.1s ease-in;

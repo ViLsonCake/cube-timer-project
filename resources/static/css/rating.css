@@ -78,11 +78,12 @@ a[class] {
 
 .filter-box {
   min-width: 500px;
-  min-height: 400px;
+  min-height: 300px;
   background-color: var(--purple-color);
   border-radius: 15px;
   position: sticky;
   top: 20px;
+  display: flex;
 }
 
 .image img {
@@ -111,8 +112,8 @@ input:checked {
 
 .filter-list fieldset {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
+  flex-wrap: nowrap;
 }
 
 .filter-list {
@@ -120,7 +121,7 @@ input:checked {
   max-width: 210px;
   font-size: 24px;
   background-color: var(--blackPurple-color);
-  border-top-left-radius: 15px;
+  border-radius: 15px 0px 0px 15px;
 }
 
 .radiobutton {
@@ -131,4 +132,9 @@ input:checked {
   background-color: var(--blackPurple-color);
   border-radius: 8px;
   padding: 4px 4px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
 }
