@@ -1,8 +1,0 @@
-@font-face {
-  font-family: "Inter";
-  src: url(../../fonts/Inter.ttf) format("opentype");
-}
-
-body{ 
-  font-family: 'Inter', sans-serif;
-}

@@ -1,6 +1,5 @@
 body {
-  background: rgb(9,9,121);
-  background: linear-gradient(180deg, rgba(9,9,121,1) 35%, rgb(187, 0, 255) 100%);
+  background: linear-gradient(180deg, var(--blue-gradient) 35%, var(--pink-gradient) 100%);
   color: #fff;
 }
 
@@ -18,8 +17,7 @@ a[class] {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  background: rgb(9,9,121);
-  background: linear-gradient(180deg, rgba(9,9,121,1) 35%, rgba(111,0,255,1) 100%);
+  background: linear-gradient(180deg, var(--blue-gradient) 35%, var(--purple-gradient) 100%);
   padding: 12px 20px;
   position: relative;
   z-index: 2;

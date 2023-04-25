@@ -1,0 +1,21 @@
+:root {
+/* blue-to-purple-gradient  */
+  --blue-gradient: rgba(9,9,121,1);
+  --purple-gradient: rgba(111,0,255,1);
+/* blue-to-pink-gradient */
+  /* --blue-gradient */
+  --pink-gradient: rgb(187, 0, 255);
+/* shadow-color */
+  --blackPurple-color: #484894;
+/* box-color */
+  --purple-color: #5C5CBC;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url(../../fonts/Inter.ttf) format("opentype");
+}
+
+body{ 
+  font-family: 'Inter', sans-serif;
+}

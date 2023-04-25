@@ -1,6 +1,5 @@
 body {
-  background: rgb(9,9,121);
-  background: linear-gradient(180deg, rgba(9,9,121,1) 35%, rgba(111,0,255,1) 100%);
+  background: linear-gradient(180deg, var(--blue-gradient) 35%, var(--pink-gradient) 100%);
   color: #fff;
 }
 
@@ -50,7 +49,7 @@ a[class] {
 .box-user {
   min-width: 350px;
   min-height: 120px;
-  background: #5C5CBC;
+  background: var(--purple-color);
   border-radius: 15px;
   margin-bottom: 15px;
   display: flex;
@@ -68,10 +67,19 @@ a[class] {
   justify-content: space-around;
 }
 
+.hero span {
+  text-transform: uppercase;
+  opacity: 0.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+}
+
 .filter-box {
   min-width: 500px;
   min-height: 400px;
-  background-color: #5C5CBC;
+  background-color: var(--purple-color);
   border-radius: 15px;
   position: sticky;
   top: 20px;
@@ -80,6 +88,9 @@ a[class] {
 .image img {
   min-width: 30px;
   min-height: 30px;
+  background-color: var(--blackPurple-color);
+  padding: 6px;
+  border-radius: 10px;
 }
 
 .filter-box input {
@@ -108,8 +119,16 @@ input:checked {
   display: flex;
   max-width: 210px;
   font-size: 24px;
+  background-color: var(--blackPurple-color);
+  border-top-left-radius: 15px;
 }
 
 .radiobutton {
   margin: 0px 10px 5px 0px;
+}
+
+.info {
+  background-color: var(--blackPurple-color);
+  border-radius: 8px;
+  padding: 4px 4px;
 }
