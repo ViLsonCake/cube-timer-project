@@ -11,6 +11,95 @@
   <title>Profile</title>
 </head>
 <body>
-  
+  <header class="header">
+    <nav class="nav">
+      <div class="button-back">
+        <a href="" class="link-back">Back</a>
+      </div>
+      <div class="image"><img src="/img/cube-logo.png" alt=""></div>
+    </nav>
+  </header>
+  <section class="main">
+    <div class="left">
+      <div class="block-info">
+        <div class="time">
+          <span>10:12</span>
+        </div>
+        <div class="scramble">
+          <input type="text" readonly value="">
+          <div class="link">
+            <a href="" class="link-button">+2</a>
+            <a href="" class="link-button">DNF</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="block-filter">
+        <div class="filter-box">
+          <form method="post" action="/profile">
+            <div class="filter-list">
+              <fieldset>
+                <div class="radiobutton">
+                  <input type="radio" id="2x2" onclick="redirectTo('2x2')" value="2x2" name="sizeCube">
+                  <label for="2x2">2x2</label>
+                </div>
+                <div class="radiobutton">
+                  <input type="radio" id="3x3" onclick="redirectTo('3x3')" value="3x3" name="sizeCube">
+                  <label for="3x3">3x3</label>
+                </div>
+                <div class="radiobutton">
+                  <input type="radio" id="4x4" onclick="redirectTo('4x4')" value="4x4" name="sizeCube">
+                  <label for="4x4">4x4</label>
+                </div>
+                <div class="radiobutton">
+                  <input type="radio" id="5x5" onclick="redirectTo('5x5')" value="5x5" name="sizeCube">
+                  <label for="5x5">5x5</label>
+                </div>
+                <div class="radiobutton">
+                  <input type="radio" id="6x6" onclick="redirectTo('6x6')" value="6x6" name="sizeCube">
+                  <label for="6x6">6x6</label>
+                </div>
+                <div class="radiobutton">
+                  <input type="radio" id="7x7" onclick="redirectTo('7x7')" value="7x7" name="sizeCube">
+                  <label for="7x7">7x7</label>
+                </div>
+                <div class="radiobutton">
+                  <input type="radio" id="pyraminx" onclick="redirectTo('pyraminx')" value="Pyraminx" name="sizeCube">
+                  <label for="Pyraminx">Pyraminx</label>
+                </div>
+              </fieldset>
+            </div>
+          </form>
+        </div>
+        <div class="username">
+          <input type="text" value="hui">
+          <div class="button">
+            <a href="" class="button-link">Change password</a>
+            <button type="submit">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="page">
+    <div class="link-page">
+      <a href="" class="page__link"><</a>
+      <a href="" class="page__link">1</a>
+      <a href="" class="page__link">2</a>
+      <a href="" class="page__link">3</a>
+      <a href="" class="page__link">4</a>
+      <a href="" class="page__link">></a>
+    </div>
+  </footer>
+  <script>
+    function redirectTo(cube) {
+      document.location.href = '/rating/' + cube;
+    }
+
+    cube = document.location.href.split('/').at(-1);
+    document.getElementById(cube).checked = true;
+
+  </script>
 </body>
 </html>

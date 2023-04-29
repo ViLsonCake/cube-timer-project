@@ -35,15 +35,15 @@ a[class] {
   padding: 4px 16px;
   border: 1px solid #000;
   border-radius: 10px;
-  background-color: transparent;
-  color: #000;
+  background-color: #000;
+  color: #fff;
   transition: all 0.1s ease-in !important;
   cursor: pointer;
 }
 
 .button a:hover {
-  background-color: #000;
-  color: #fff;
+  background-color: transparent;
+  color: #000;
 }
 
 .box-user {
