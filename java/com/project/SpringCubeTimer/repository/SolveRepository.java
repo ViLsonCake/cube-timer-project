@@ -1,6 +1,8 @@
 package com.project.SpringCubeTimer.repository;
 
 import com.project.SpringCubeTimer.entity.SolveEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -21,4 +23,5 @@ public interface SolveRepository extends JpaRepository<SolveEntity, Long> {
     @Query(value = "SELECT * FROM solve s WHERE s.user_id = :userId AND s.cube_variable = :cube ORDER BY s.solve_id DESC LIMIT 12", nativeQuery = true)
     List<SolveEntity> findLastTwelveSolveByUserIdAndCube(Long userId, String cube);
 
+    Page<SolveEntity> findAllByCube(String cube, PageRequest pageRequest);
 }
