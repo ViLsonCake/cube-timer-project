@@ -1,0 +1,154 @@
+body {
+  background: linear-gradient(180deg, var(--blue-gradient) 35%, var(--purple-gradient) 100%);
+  color: #fff;
+}
+
+fieldset {
+  border: none;
+}
+
+a[class] {
+  text-decoration: none;
+  color: #000;
+}
+
+.header {
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  min-height: 60px;
+}
+
+.main {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+
+.block-info {
+  min-width: 350px;
+  min-height: 120px;
+  background-color: var(--purple-color);
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 0px;
+}
+
+.block-filter { 
+  min-width: 500px;
+  min-height: 300px;
+  background-color: var(--purple-color);
+  border-radius: 15px;
+  display: flex;
+}
+
+.link {
+  margin-top: 20px;
+  float: right;
+}
+
+.link-button:not(:last-child) {
+  margin-right: 20px;
+}
+
+.scramble {
+  width: 201px;
+}
+
+.scramble input {
+  background-color: #46468c;
+  border: none;
+  color: #fff;
+}
+
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.page__link {
+  background-color: #46468c;
+  padding: 2px 5px;
+  border-radius: 5px;
+  font-size: 25px;
+}
+
+.link-page a:not(:last-child) {
+  margin-right: 5px;
+}
+
+.filter-box {
+  min-height: 300px;
+  background-color: var(--purple-color);
+  border-radius: 15px;
+  position: sticky;
+  top: 20px;
+  display: flex;
+}
+
+.filter-box input {
+  appearance: none;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #fff;
+  transition: 0.2s all linear;
+  margin-right: 5px;
+  position: relative;
+  top: 1px;
+}
+
+.filter-list fieldset {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.filter-list {
+  display: flex;
+  max-width: 210px;
+  font-size: 24px;
+  background-color: var(--blackPurple-color);
+  border-radius: 15px 0px 0px 15px;
+}
+
+.radiobutton {
+  margin: 0px 10px 5px 0px;
+}
+
+.username {
+  display: flex;
+  flex-direction: column;
+  margin-left: 60px;
+  margin-top: 30px;
+}
+
+.username input {
+  background-color: #46468c;
+  border: none;
+  color: #fff;
+}
+
+.username button {
+  width: 70px;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  margin-top: 10px;
+  width: 210px;
+}
+
+.button button {
+  background-color: transparent;
+  border-radius: 15px;
+  border: 1px solid #000;
+}
