@@ -1,6 +1,5 @@
 body {
   background: linear-gradient(180deg, var(--blue-gradient) 35%, var(--purple-gradient) 100%);
-  color: #fff;
 }
 
 fieldset {
@@ -152,3 +151,19 @@ a[class] {
   border-radius: 15px;
   border: 1px solid #000;
 }
+
+.button-back a {
+  padding: 4px 16px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  background-color: #000;
+  color: #fff;
+  transition: all 0.1s ease-in !important;
+  cursor: pointer;
+}
+
+.button-back a:hover {
+  background-color: transparent;
+  color: #000;
+}
+
