@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,22 +14,22 @@
   <header class="header">
     <nav class="nav">
       <div class="button-back">
-        <a href="" class="link-back">Back</a>
+        <a href="/timer/3x3" class="link-back">Back</a>
       </div>
-      <div class="image"><img src="/img/cube-logo.png" alt=""></div>
+<!--      <div class="image"><img src="/img/cube-logo.png" alt=""></div>-->
     </nav>
   </header>
   <section class="main">
     <div class="left">
-      <div class="block-info">
+      <div th:each="solve : ${solves}" class="block-info">
         <div class="time">
-          <span>10:12</span>
+          <span th:text="${solve.getTime()}"></span>
         </div>
         <div class="scramble">
-          <input type="text" readonly value="">
+          <input type="text" readonly value="" th:value="${solve.getScramble()}">
           <div class="link">
-            <a href="" class="link-button">+2</a>
-            <a href="" class="link-button">DNF</a>
+            <a href="'/timer/plus2?solveId=' + ${solve.getSolveId()}" class="link-button">+2</a>
+            <a href="'/timer/DNF?solveId=' + ${solve.getSolveId()}" class="link-button">DNF</a>
           </div>
         </div>
       </div>
@@ -73,10 +73,12 @@
           </form>
         </div>
         <div class="username">
-          <input type="text" value="hui">
+          <input type="text" th:value="${username}">
           <div class="button">
-            <a href="" class="button-link">Change password</a>
-            <button type="submit">Submit</button>
+            <a href="/change-password" class="button-link">Change password</a>
+            <form action="/profile" method="post">
+              <button type="submit">Submit</button>
+            </form>
           </div>
         </div>
       </div>
@@ -94,10 +96,13 @@
   </footer>
   <script>
     function redirectTo(cube) {
-      document.location.href = '/rating/' + cube;
+      document.location.href = '/profile?cube=' + cube + '&page=0';
     }
 
-    cube = document.location.href.split('/').at(-1);
+    let pattern = /=.+&/gi;
+
+    let cube = document.location.href.match(pattern).at(0);
+
     document.getElementById(cube).checked = true;
 
   </script>

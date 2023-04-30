@@ -48,7 +48,7 @@ public class ProfileService {
         if (page == 0 && solves.getTotalPages() == 0) {
             model.addAttribute("username", username);
             model.addAttribute("solveNotExist", true);
-            return "test-profile";
+            return "profile";
         }
 
         // Get current user solves by cube
@@ -62,7 +62,7 @@ public class ProfileService {
         model.addAttribute("totalPages", solves.getTotalPages());
         model.addAttribute("solveNotExist", false);
 
-        return "test-profile";
+        return "profile";
     }
 
 }
