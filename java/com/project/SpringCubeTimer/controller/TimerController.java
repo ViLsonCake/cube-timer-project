@@ -32,8 +32,19 @@ public class TimerController {
     @PostMapping(consumes = MediaType.TEXT_PLAIN_VALUE)
     public void getRequestFromJS(@CookieValue(name = "username", defaultValue = "UNKNOWN") String username,
                            @RequestBody String body) {
-
         timerService.saveSolve(username, body);
-
     }
+
+    @GetMapping("/plus2")
+    public String addPlus2ToSeconds(@RequestParam Long solveId,
+                                    @RequestParam String page) {
+        return timerService.addPlus2(solveId, page);
+    }
+
+    @GetMapping("/DNF")
+    public String makeSolveDNF(@RequestParam Long solveId,
+                               @RequestParam String page) {
+        return timerService.makeDNF(solveId, page);
+    }
+
 }

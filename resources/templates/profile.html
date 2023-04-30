@@ -29,8 +29,8 @@
         <div class="scramble">
           <input type="text" readonly value="" th:value="${solve.getScramble()}">
           <div class="link">
-            <a href="'/timer/plus2?solveId=' + ${solve.getSolveId()}" class="link-button">+2</a>
-            <a href="'/timer/DNF?solveId=' + ${solve.getSolveId()}" class="link-button">DNF</a>
+            <a th:href="@{/timer/plus2(solveId = ${solve.getSolveId()}, page = ${page})}" class="link-button">+2</a>
+            <a th:href="@{/timer/DNF(solveId = ${solve.getSolveId()}, page = ${page})}" class="link-button">DNF</a>
           </div>
         </div>
       </div>
@@ -78,7 +78,7 @@
             <input type="text" name="newUsername" th:value="${username}">
             <div class="button">
             <a href="/change-password" class="button-link">Change password</a>
-            <button type="submit">Submit</button>
+            <button type="submit">Save</button>
             </div>
           </form>
           <div class="score">
@@ -92,6 +92,7 @@
     </div>
   </section>
   <footer class="page">
+    <!--Pagination-->
     <div class="link-page" th:if="${totalPages > 2}">
       <a th:href="@{/profile(cube=${cube}, page=${page} - 1)}" class="page__link"><</a>
       <a th:href="@{/profile(cube=${cube}, page=${totalPages - 1 != page ? page : 0})}" class="page__link" th:text="${totalPages - 1 != page ? page + 1 : 1}"></a>

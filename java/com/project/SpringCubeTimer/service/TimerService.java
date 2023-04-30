@@ -181,4 +181,29 @@ public class TimerService {
 
     }
 
+    public String addPlus2(Long solveId, String page) {
+        if (solveRepository.findById(solveId).isEmpty())
+            return "redirect:/profile?cube=3x3&page=0";
+
+        SolveEntity solve = solveRepository.findById(solveId).get();
+
+        String newTime = convertToTime(toSeconds(solve.getTime()) + 200);
+
+        solve.setTime(newTime);
+
+        solveRepository.save(solve);
+
+        return "redirect:/profile?cube=3x3&page=" + page;
+    }
+
+    public String makeDNF(Long solveId, String page) {
+        if (solveRepository.findById(solveId).isEmpty())
+            return "redirect:/profile?cube=3x3&page=0";
+
+        SolveEntity solve = solveRepository.findById(solveId).get();
+        solve.setTime("DNF");
+        solveRepository.save(solve);
+
+        return "redirect:/profile?cube=3x3&page=" + page;
+    }
 }
