@@ -1,5 +1,5 @@
 body {
-  background: linear-gradient(180deg, var(--blue-gradient) 35%, var(--purple-gradient) 100%);
+  background: linear-gradient(180deg, var(--blue-gradient) 35%, var(--pink-gradient) 100%);
   color: #fff;
 }
 
@@ -14,11 +14,15 @@ a[class] {
 
 .header {
   background-color: #fff;
-  display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 10px 15px;
   min-height: 60px;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .main {
@@ -35,6 +39,10 @@ a[class] {
   display: flex;
   justify-content: space-around;
   padding: 20px 0px;
+}
+
+.block-info:not(:last-child) {
+  margin-bottom: 20px;
 }
 
 .block-filter { 
@@ -88,10 +96,11 @@ a[class] {
   justify-content: center;
   align-items: center;
   margin-top: 50px;
+  padding: 30px 0px;
 }
 
 .page__link {
-  background-color: #46468c;
+  background-color: #575795;
   padding: 2px 8px;
   border-radius: 5px;
   font-size: 25px;
@@ -168,7 +177,7 @@ input:checked {
   justify-content: space-between;
   text-align: center;
   margin-top: 20px;
-  width: 210px;
+  width: 220px;
 }
 
 .button button {
@@ -217,4 +226,13 @@ input:checked {
 
 .score span { 
   padding: 3px;
+}
+
+.image {
+  width: 53px;
+  height: 40px;
+}
+
+.statistic {
+  font-size: 24px;
 }
