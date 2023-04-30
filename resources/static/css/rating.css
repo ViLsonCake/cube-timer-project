@@ -104,6 +104,7 @@ a[class] {
   margin-right: 5px;
   position: relative;
   top: 1px;
+  cursor: pointer;
 }
 
 input:checked {

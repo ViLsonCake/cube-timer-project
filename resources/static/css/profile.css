@@ -1,5 +1,6 @@
 body {
   background: linear-gradient(180deg, var(--blue-gradient) 35%, var(--purple-gradient) 100%);
+  color: #fff;
 }
 
 fieldset {
@@ -8,7 +9,7 @@ fieldset {
 
 a[class] {
   text-decoration: none;
-  color: #000;
+  color: #fff;
 }
 
 .header {
@@ -47,14 +48,33 @@ a[class] {
 .link {
   margin-top: 20px;
   float: right;
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
 }
 
-.link-button:not(:last-child) {
-  margin-right: 20px;
+.link a {
+  transition: all 0.1s ease-in;
+  padding: 3px 5px;
 }
+
+.link a:hover {
+  background-color: #00000029;
+  border-radius: 5px;
+}
+
+
+
+/* .link-button:not(:last-child) {
+  margin-right: 20px;
+} */
 
 .scramble {
   width: 201px;
+}
+
+.scramble a {
+  color: #fff;
 }
 
 .scramble input {
@@ -72,7 +92,7 @@ a[class] {
 
 .page__link {
   background-color: #46468c;
-  padding: 2px 5px;
+  padding: 2px 8px;
   border-radius: 5px;
   font-size: 25px;
 }
@@ -100,6 +120,11 @@ a[class] {
   margin-right: 5px;
   position: relative;
   top: 1px;
+  cursor: pointer;
+}
+
+input:checked {
+  border: 6px solid black;
 }
 
 .filter-list fieldset {
@@ -142,14 +167,31 @@ a[class] {
   align-items: center;
   justify-content: space-between;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 20px;
   width: 210px;
 }
 
 .button button {
   background-color: transparent;
   border-radius: 15px;
-  border: 1px solid #000;
+  border: 1px solid #fff;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.1s ease-in;
+}
+
+.button button:hover {
+  background-color: #00000029;
+}
+
+.button a {
+  padding: 3px 5px;
+  transition: all 0.1s ease-in;
+}
+
+.button a:hover {
+  background-color: #00000029;
+  border-radius: 5px;
 }
 
 .button-back a {
@@ -167,3 +209,12 @@ a[class] {
   color: #000;
 }
 
+.score {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
+
+.score span { 
+  padding: 3px;
+}
