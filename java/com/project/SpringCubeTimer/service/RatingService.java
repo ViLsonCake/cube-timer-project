@@ -45,7 +45,7 @@ public class RatingService {
 
             // User values
             String username = user.getUsername();
-            String personalBest = userSolves.stream().min(solveTimeCompare).get().getTime();
+            String personalBest = getPersonalBest(userSolves);
             String averageTime = getAverageTime(userSolves);
 
             topUsers.add(new String[]{username, personalBest, averageTime}); // Add array with user values
@@ -61,6 +61,10 @@ public class RatingService {
         model.addAttribute("username", cookieUsername);
 
         return "rating";
+    }
+
+    public String getPersonalBest(List<SolveEntity> userSolves) {
+        return userSolves.stream().min(solveTimeCompare).get().getTime();
     }
 
     public String getAverageTime(List<SolveEntity> userSolves) {

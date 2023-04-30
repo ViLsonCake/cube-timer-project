@@ -78,16 +78,28 @@ public class TimerService {
     public String getAverageOf5(String username, String cube) {
         List<SolveEntity> lastFiveSolve = solveRepository.findLastFiveSolveByUserIdAndCube(userRepository.findByUsername(username).getUserId(), cube);
 
+        int DNFcount = 0;
+        int nonDNFcount = 0;
+        int totalTimeInMillis = 0;
+
         // If user have less than 5 solves
         if (lastFiveSolve.size() < 5) {
             return "--:--";
         }
 
-        int totalTimeInMillis = 0;
-
         for (SolveEntity solve : lastFiveSolve) {
-            totalTimeInMillis += toSeconds(solve.getTime());
+            if (solve.getTime().equalsIgnoreCase("DNF")) {
+                DNFcount++;
+            } else {
+                nonDNFcount++;
+                totalTimeInMillis += toSeconds(solve.getTime());
+            }
         }
+
+        // If ao5 equals DNF
+        if (DNFcount >= 2)
+            return "DNF";
+
         // Subtract the best and words result
         int secondsMax = toSeconds(lastFiveSolve.stream().max(solveTimeCompare).get().getTime());
         int secondsMin = toSeconds(lastFiveSolve.stream().min(solveTimeCompare).get().getTime());
@@ -95,7 +107,7 @@ public class TimerService {
         int timeWithoutMaxAndMin = totalTimeInMillis - secondsMin - secondsMax;
 
         // Get arithmetic mean
-        timeWithoutMaxAndMin /= 3;
+        timeWithoutMaxAndMin /= nonDNFcount;
 
         return convertToTime(timeWithoutMaxAndMin);
     }
@@ -136,7 +148,10 @@ public class TimerService {
         return solveEntity.getTime();
     }
 
-    public void timerPage(Model model, String cube, String username) throws IOException, CubeNotValidException {
+    public String timerPage(Model model, String cube, String username) throws IOException, CubeNotValidException {
+        if (username.equals("UNKNOWN"))
+            return "redirect:/login";
+
         // Add attributes
         model.addAttribute("cube", cube);
         model.addAttribute("username", username);
@@ -144,6 +159,8 @@ public class TimerService {
         model.addAttribute("averageOf5", getAverageOf5(username, cube));
         model.addAttribute("averageOf12", getAverageOf12(username, cube));
         model.addAttribute("scramble", getRandomScramble(cube));
+
+        return "timer";
     }
 
     public void saveSolve(String username, String body) {
