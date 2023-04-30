@@ -16,14 +16,14 @@ public class LoginService {
         this.userRepository = userRepository;
     }
 
-    public void makeLogged(HttpServletResponse response, String username) {
+    public static void makeLogged(HttpServletResponse response, String username) {
         Cookie usernameCookie = new Cookie("username", username);
         usernameCookie.setMaxAge(toSeconds(90));
 
         response.addCookie(usernameCookie);
     }
 
-    public int toSeconds(int days) {
+    public static int toSeconds(int days) {
         return days * 24 * 60 * 60;
     }
 

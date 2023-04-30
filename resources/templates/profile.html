@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../static/css/main.css">
-  <link rel="stylesheet" href="../static/css/profile.css">
-  <link rel="stylesheet" href="../static/css/reset.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/profile.css">
+  <link rel="stylesheet" href="/css/reset.css">
   <link rel="icon" href="/img/cube-logo.png">
   <title>Profile</title>
 </head>
@@ -16,9 +16,10 @@
         <div class="button-back">
           <a href="/timer/3x3" class="link-back">Back</a>
         </div>
-        <div class="image"><img src="../static/img/cube-logo.png" alt=""></div>
+        <div class="image"><img src="/img/cube-logo.png" alt=""></div>
     </div>
   </header>
+  <span th:if="${solveNotExist}">You don't have a solves</span>
   <section class="main">
     <div class="left">
       <div th:each="solve : ${solves}" class="block-info">
@@ -73,31 +74,33 @@
           </form>
         </div>
         <div class="username">
-          <input type="text" th:value="${username}">
-          <div class="button">
+          <form action="/profile" method="post">
+            <input type="text" name="newUsername" th:value="${username}">
+            <div class="button">
             <a href="/change-password" class="button-link">Change password</a>
-            <form action="/profile" method="post">
-              <button type="submit">Submit</button>
-            </form>
-          </div>
+            <button type="submit">Submit</button>
+            </div>
+          </form>
           <div class="score">
             <span class="statistic">PB:</span>
-            <span class="score-record"></span>
+            <span class="score-record" th:text="${personalBest}"></span>
             <span class="statistic">AVG:</span>
-            <span class="score-record"></span>
+            <span class="score-record" th:text="${average}"></span>
           </div>
         </div>
       </div>
     </div>
   </section>
   <footer class="page">
-    <div class="link-page">
-      <a href="" class="page__link"><</a>
-      <a href="" class="page__link">1</a>
-      <a href="" class="page__link">2</a>
-      <a href="" class="page__link">3</a>
-      <a href="" class="page__link">4</a>
-      <a href="" class="page__link">></a>
+    <div class="link-page" th:if="${totalPages > 2}">
+      <a th:href="@{/profile(cube=${cube}, page=${page} - 1)}" class="page__link"><</a>
+      <a th:href="@{/profile(cube=${cube}, page=${totalPages - 1 != page ? page : 0})}" class="page__link" th:text="${totalPages - 1 != page ? page + 1 : 1}"></a>
+      <a th:if="${page + 1 == totalPages}" class="page__link">...</a>
+      <a th:if="${page + 1 != totalPages && page + 2 != totalPages}" th:href="@{/profile(cube=${cube}, page=${page} + 1)}" class="page__link" th:text="${page + 2}"></a>
+      <a th:if="${page + 1 != totalPages}" class="page__link">...</a>
+      <a th:if="${page + 1 == totalPages}" class="page__link" th:href="@{/profile(cube=${cube}, page=${totalPages - 2})}" th:text="${totalPages - 1}"></a>
+      <a th:href="@{/profile(cube=${cube}, page=${totalPages - 1})}" class="page__link" th:text="${totalPages}"></a>
+      <a th:href="@{/profile(cube=${cube}, page=${page} + 1)}" class="page__link">></a>
     </div>
   </footer>
   <script>
@@ -107,7 +110,9 @@
 
     let pattern = /=.+&/gi;
 
-    let cube = document.location.href.match(pattern).at(0);
+    let str = document.location.href.match(pattern).at(0);
+
+    let cube = str.substring(1, str.length - 1);
 
     document.getElementById(cube).checked = true;
 

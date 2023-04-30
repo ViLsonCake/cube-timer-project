@@ -1,9 +1,11 @@
 package com.project.SpringCubeTimer.service;
 
 import com.project.SpringCubeTimer.entity.SolveEntity;
+import com.project.SpringCubeTimer.entity.UserEntity;
 import com.project.SpringCubeTimer.repository.SolveRepository;
 import com.project.SpringCubeTimer.repository.UserRepository;
 import com.project.SpringCubeTimer.validate.RequestBodyValidation;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,7 +28,7 @@ public class ProfileService {
         this.userRepository = userRepository;
         this.solveRepository = solveRepository;
         this.ratingService = ratingService;
-        this.size = 30;
+        this.size = 20;
     }
 
     public String getProfilePage(String username, String cube, int page, Model model) {
@@ -55,6 +57,8 @@ public class ProfileService {
         List<SolveEntity> userSolves = solveRepository.findAllSolveByIdAndCube(userRepository.findByUsername(username).getUserId(), cube);
 
         model.addAttribute("username", username);
+        model.addAttribute("cube", cube);
+        model.addAttribute("page", page);
         model.addAttribute("personalBest",
                 ratingService.getPersonalBest(userSolves));
         model.addAttribute("average", ratingService.getAverageTime(userSolves));
@@ -63,6 +67,21 @@ public class ProfileService {
         model.addAttribute("solveNotExist", false);
 
         return "profile";
+    }
+
+    public String changeUsername(HttpServletResponse response, String oldUsername, String newUsername) {
+        if (userRepository.findByUsername(newUsername) != null)
+            return "redirect:/profile?cube3x3&page=0";
+
+        // Find user, change username, save
+        UserEntity changedUser = userRepository.findByUsername(oldUsername);
+        changedUser.setUsername(newUsername);
+        userRepository.save(changedUser);
+
+        // Change cookie value
+        LoginService.makeLogged(response, newUsername);
+
+        return "redirect:/profile?cube?3x3&page=0";
     }
 
 }
