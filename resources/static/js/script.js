@@ -58,24 +58,6 @@ function sendPost(url, body = null) {
     })
 }
 
-function getRandomScramble(cube) {
-    const url = "https://rubiks-cube-scramble-generator.onrender.com/api?puzzleType=" + cube,
-    headersParam = {
-        'Content-Type': 'application/json',
-        "Access-Control-Allow-Origin": '*',
-        "Access-Control-Allow-Credentials" : true,
-    }
-
-    return fetch(url, {
-        method: 'GET',
-        headers: headersParam,
-        mode: 'no-cors'
-    }).then(response => {
-        return JSON.stringify(response);
-    })
-}
-
-
 document.addEventListener('keyup', function(event) {
     if (event.code == 'Space' && (!timerStartedNow) && anyKeyPressed) {
         startTimer();
