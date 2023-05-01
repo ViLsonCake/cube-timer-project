@@ -78,8 +78,10 @@ public class TimerService {
     public String getAverageOf5(String username, String cube) {
         List<SolveEntity> lastFiveSolve = solveRepository.findLastFiveSolveByUserIdAndCube(userRepository.findByUsername(username).getUserId(), cube);
 
+        lastFiveSolve.forEach(System.out::println);
+
         int DNFcount = 0;
-        int nonDNFcount = 0;
+        int nonDNFcount = -2;
         int totalTimeInMillis = 0;
 
         // If user have less than 5 solves
