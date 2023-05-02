@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,14 +13,14 @@
 <body>
   <section class="main">
     <div class="container">
-      <form action="profile/change-password" method="post">
+      <form action="/profile/change-password" method="post">
         <div class="login-block">
           <div class="logo">
               <h1>CHANGE PASSWORD</h1>
             </div>
           <div class="input-form">
               <div class="input-box">
-                <input type="text" name="password" class="input-field" placeholder="Password">
+                <input type="password" name="password" class="input-field" placeholder="Password">
                 <div class="line"></div>
               </div>
               <div class="input-box">
@@ -35,10 +35,10 @@
               <button type="submit">Change</button>
             </div>
             <div class="link-buttons">
-              <a href="/forgot-password" class="link-button">Forgot password?</a>
+              <a href="/profile/forgot-password" class="link-button">Forgot password?</a>
             </div>
-        </form>
         </div>
+      </form>
     </div>
   </section>
 </body>

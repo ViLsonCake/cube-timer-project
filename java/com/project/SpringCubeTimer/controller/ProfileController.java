@@ -45,4 +45,30 @@ public class ProfileController {
         return profileService.changePassword(username, password, confirmPassword, model);
     }
 
+    @GetMapping("/forgot-password")
+    public String forgotPasswordPage(@CookieValue(name = "username", defaultValue = "UNKNOWN") String username,
+                                     Model model) {
+        return profileService.getForgotPasswordPage(username, model);
+    }
+
+    @PostMapping("/forgot-password")
+    public String userEmail(@RequestParam String email,
+                               HttpServletResponse response,
+                               Model model) {
+        return profileService.getLoginEmail(response, email, model);
+    }
+
+    @GetMapping("/enter-code")
+    public String enterCodePage(Model model) {
+        return profileService.getEnterCodePage(model);
+    }
+
+    @PostMapping("/enter-code")
+    public String getUserCode(@CookieValue(name = "email") String email,
+                              @CookieValue(name = "securityCode") String securityCode,
+                              @RequestParam String code,
+                              HttpServletResponse response,
+                              Model model) {
+        return profileService.getUserCode(response, email, securityCode, code, model);
+    }
 }

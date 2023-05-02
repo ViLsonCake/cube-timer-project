@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,14 +13,14 @@
 <body>
   <section class="main">
     <div class="container">
-      <form action="/login" method="post">
+      <form action="/profile/enter-code" method="post">
         <div class="login-block">
           <div class="logo">
               <h1>ENTER CODE</h1>
             </div>
           <div class="input-form">
               <div class="input-box">
-                <input type="text" name="text" class="input-field" placeholder="Enter your code">
+                <input type="text" name="code" class="input-field" placeholder="Enter your code">
                 <div class="line"></div>
                 <span class="message" th:text="${wrongCodeMessage}"></span>
               </div>
