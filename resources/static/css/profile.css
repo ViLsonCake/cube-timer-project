@@ -38,7 +38,7 @@ a[class] {
   border-radius: 15px;
   display: flex;
   justify-content: space-around;
-  padding: 20px 0px;
+  padding: 20px 20px;
 }
 
 .block-info:not(:last-child) {
@@ -51,6 +51,8 @@ a[class] {
   background-color: var(--purple-color);
   border-radius: 15px;
   display: flex;
+  position: sticky;
+  top: 20px;
 }
 
 .link {
@@ -220,8 +222,10 @@ input:checked {
 
 .score {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   margin-top: 15px;
+  min-width: 200px;
+  padding: 0px 5px;
 }
 
 .score span { 
@@ -235,4 +239,19 @@ input:checked {
 
 .statistic {
   font-size: 24px;
+}
+
+.score-box {
+  display: flex;
+  flex-basis: 50%;
+  flex-direction: column;
+  padding: 2px 3px;
+}
+
+.message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  opacity: 0.5;
 }

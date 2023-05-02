@@ -19,15 +19,15 @@
         <div class="image"><img src="/img/cube-logo.png" alt=""></div>
     </div>
   </header>
-  <span th:if="${solveNotExist}">You don't have a solves</span>
   <section class="main">
+    <span th:if="${solveNotExist}" class="message">You don't have a solves</span>
     <div class="left">
       <div th:each="solve : ${solves}" class="block-info">
         <div class="time">
           <span th:text="${solve.getTime()}"></span>
         </div>
         <div class="scramble">
-          <input type="text" readonly value="" th:value="${solve.getScramble()}">
+          <input type="text" readonly th:value="${solve.getScramble()}">
           <div class="link">
             <a th:href="@{/timer/plus2(solveId = ${solve.getSolveId()}, page = ${page})}" class="link-button">+2</a>
             <a th:href="@{/timer/DNF(solveId = ${solve.getSolveId()}, page = ${page})}" class="link-button">DNF</a>
@@ -82,10 +82,18 @@
             </div>
           </form>
           <div class="score">
-            <span class="statistic">PB:</span>
-            <span class="score-record" th:text="${personalBest}"></span>
-            <span class="statistic">AVG:</span>
-            <span class="score-record" th:text="${average}"></span>
+            <div class="score-box">
+              <span class="statistic">PB:</span>
+              <span class="score-record" th:text="${personalBest}"></span>
+            </div>
+            <div class="score-box">
+              <span class="statistic">Solves:</span>
+              <span class="score-record" th:text="${solveCount}"></span>
+            </div>
+            <div class="score-box">
+              <span class="statistic">AVG:</span>
+              <span class="score-record" th:text="${average}"></span>
+            </div>
           </div>
         </div>
       </div>
