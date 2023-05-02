@@ -84,4 +84,29 @@ public class ProfileService {
         return "redirect:/profile?cube?3x3&page=0";
     }
 
+    public String getChangePasswordPage() {
+        return "changepass";
+    }
+
+    public String changePassword(String username, String password, String confirmPassword, Model model) {
+        if (!password.equals(confirmPassword)) {
+            model.addAttribute("passwordsDoNotMatch", "Passwords don't match");
+            return "changepass";
+        }
+
+        // If user not exist
+        if (userRepository.findByUsername(username) == null)
+            return "changepass";
+
+        // Find user change password and save
+        UserEntity user = userRepository.findByUsername(username);
+        user.setPassword(password);
+
+        userRepository.save(user);
+
+        return "redirect:/timer/3x3";
+
+    }
+
+
 }
