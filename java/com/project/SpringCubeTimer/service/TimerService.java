@@ -24,7 +24,7 @@ public class TimerService {
     private final SolveRepository solveRepository;
     private final SolveTimeCompare solveTimeCompare;
 
-    @Value("${ScrambleApi.url}")
+    @Value("ScrambleApi.url")
     private String constApiUrl;
 
     @Autowired
