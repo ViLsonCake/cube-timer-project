@@ -20,14 +20,14 @@
           <a class="link__item" href="/logout">Logout</a>
         </div>
         </div>
-      <a data-modal-target="#modal" href="#" class="link-button">
+      <a id="settings" onclick="openModal()" data-modal-target="#modal" class="link-button">
         <img class="settings" src="/img/settings.svg" alt="">
       </a>
       <div class="modal" id="modal">
         <div class="modal-header">
           <div class="title">
             <span>Hello</span>
-            <button data-close-btn class="close-btn">&times;</button>
+            <button onclick="closeModal()" data-close-btn class="close-btn">&times;</button>
           </div>
         </div>
         <div class="modal-body">
@@ -71,5 +71,6 @@
     </section>
   <div class="" id="overlay"></div>
   <script src="/js/script.js"></script>
+  <script src="/js/popup.js"></script>
 </body>
 </html>
