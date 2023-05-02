@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/changepass.css">
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="icon" href="/img/cube-logo.png">
+  <title>Change password</title>
+</head>
+<body>
+  <section class="main">
+    <div class="container">
+      <form action="profile/change-password" method="post">
+        <div class="login-block">
+          <div class="logo">
+              <h1>CHANGE PASSWORD</h1>
+            </div>
+          <div class="input-form">
+              <div class="input-box">
+                <input type="text" name="password" class="input-field" placeholder="Password">
+                <div class="line"></div>
+              </div>
+              <div class="input-box">
+                <input type="password" name="confirmPassword" class="input-field" placeholder="Confirm password">
+                <div class="line"></div>
+                <span th:text="${passwordsDoNotMatch}"></span>
+              </div>
+            <span th:text="${loginError}"></span>
+            </div>
+          <div class="buttons">
+              <a href="/timer/3x3" class="button-back">Back</a>
+              <button type="submit">Change</button>
+            </div>
+            <div class="link-buttons">
+              <a href="/forgot-password" class="link-button">Forgot password?</a>
+            </div>
+        </form>
+        </div>
+    </div>
+  </section>
+</body>
+</html>
