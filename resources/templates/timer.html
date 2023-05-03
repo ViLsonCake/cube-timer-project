@@ -23,15 +23,28 @@
       <a id="settings" onclick="openModal()" data-modal-target="#modal" class="link-button">
         <img class="settings" src="/img/settings.svg" alt="">
       </a>
-      <div class="modal" id="modal">
+      <div class="modal active" id="modal">
         <div class="modal-header">
           <div class="title">
-            <span>Hello</span>
+            <span>Settings</span>
             <button onclick="closeModal()" data-close-btn class="close-btn">&times;</button>
           </div>
         </div>
         <div class="modal-body">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem eveniet facere aliquid asperiores laborum possimus maiores nulla ut rerum adipisci necessitatibus assumenda laboriosam, temporibus ea repudiandae, inventore ipsum est cumque.
+          <div class="switch-box">
+            <span class="text">hui</span>
+            <label class="switch">
+              <input type="checkbox">
+              <span class="slider round"></span>
+          </label>
+          </div>
+          <div class="switch-box">
+            <span class="text">hui</span>
+            <label class="switch">
+              <input type="checkbox">
+              <span class="slider round"></span>
+          </label>
+          </div>
         </div>
       </div>
       <a href="/rating/3x3" class="link-button">
@@ -69,7 +82,7 @@
         </div>
       </div>
     </section>
-  <div class="" id="overlay"></div>
+  <div class="active" id="overlay"></div>
   <script src="/js/script.js"></script>
   <script src="/js/popup.js"></script>
 </body>
