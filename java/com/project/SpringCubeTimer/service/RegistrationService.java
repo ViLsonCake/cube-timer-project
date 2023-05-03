@@ -24,18 +24,18 @@ public class RegistrationService {
         // Check invalid values
         if (!user.getPassword().equals(confirmPassword)) {
             model.addAttribute("passwordError", "Password don't equals");
-            return "registration";
+            return "registration.html";
         }
 
         if (userRepository.findByUsername(user.getUsername()) != null ||
                 userRepository.findByEmail(user.getEmail()) != null) {
             model.addAttribute("UserExistError", "User already exist");
-            return "registration";
+            return "registration.html";
         }
 
         if (user.getUsername().equals("UNKNOWN")) {
             model.addAttribute("invalidName", "Name is not valid");
-            return "registration";
+            return "registration.html";
         }
 
         // Save user to db and cookie session

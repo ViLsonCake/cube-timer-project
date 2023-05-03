@@ -1,6 +1,7 @@
 package com.project.SpringCubeTimer.service;
 
 import com.project.SpringCubeTimer.repository.UserRepository;
+import com.project.SpringCubeTimer.service.serviceConst.ServiceConst;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class LoginService {
     // Get request
     public String getLoginPage(String username) {
         if (isLogged(username)) return "redirect:/timer/3x3";
-        return "login";
+        return "login.html";
     }
 
     // Post request
@@ -42,8 +43,8 @@ public class LoginService {
         // If user not found or password is incorrect
         if (userRepository.findByUsername(username) == null ||
                 (!userRepository.findByUsername(username).getPassword().equals(password))) {
-            model.addAttribute("loginError", "Incorrect login or password");
-            return "login";
+            model.addAttribute("loginError", ServiceConst.LOGIN_MESSAGE);
+            return "login.html";
         }
 
         // Add user to cookie session

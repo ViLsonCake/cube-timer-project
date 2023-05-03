@@ -162,7 +162,7 @@ public class TimerService {
         model.addAttribute("averageOf12", getAverageOf12(username, cube));
         model.addAttribute("scramble", getRandomScramble(cube));
 
-        return "timer";
+        return "timer.html";
     }
 
     public void saveSolve(String username, String body) {

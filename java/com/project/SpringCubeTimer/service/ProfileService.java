@@ -6,7 +6,6 @@ import com.project.SpringCubeTimer.repository.SolveRepository;
 import com.project.SpringCubeTimer.repository.UserRepository;
 import com.project.SpringCubeTimer.sendMail.MailSender;
 import com.project.SpringCubeTimer.service.serviceConst.ServiceConst;
-import com.project.SpringCubeTimer.validate.RequestBodyValidation;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +53,7 @@ public class ProfileService {
         if (page == 0 && solves.getTotalPages() == 0) {
             model.addAttribute("username", username);
             model.addAttribute("solveNotExist", true);
-            return "profile";
+            return "profile.html";
         }
 
         // Get current user solves by cube
@@ -71,7 +70,7 @@ public class ProfileService {
         model.addAttribute("solveCount", userSolves.size());
         model.addAttribute("solveNotExist", false);
 
-        return "profile";
+        return "profile.html";
     }
 
     public String changeUsername(HttpServletResponse response, String oldUsername, String newUsername) {
@@ -90,18 +89,18 @@ public class ProfileService {
     }
 
     public String getChangePasswordPage() {
-        return "changepass";
+        return "changepass.html";
     }
 
     public String changePassword(String username, String password, String confirmPassword, Model model) {
         if (!password.equals(confirmPassword)) {
-            model.addAttribute("passwordsDoNotMatch", "Passwords don't match");
-            return "changepass";
+            model.addAttribute("passwordsDoNotMatch", ServiceConst.PASSWORD_MESSAGE);
+            return "changepass.html";
         }
 
         // If user not exist
         if (userRepository.findByUsername(username) == null)
-            return "changepass";
+            return "changepass.html";
 
         // Find user change password and save
         UserEntity user = userRepository.findByUsername(username);
@@ -120,14 +119,14 @@ public class ProfileService {
 
         model.addAttribute("email", email);
 
-        return "forgotpass";
+        return "forgotpass.html";
     }
 
     public String getLoginEmail(HttpServletResponse response, String email, Model model) {
         // If email not exist
         if (userRepository.findByEmail(email) == null) {
-            model.addAttribute("emailNotExist", "Email is not exist");
-            return "forgotpass";
+            model.addAttribute("emailNotExist", ServiceConst.EMAIL_MESSAGE);
+            return "forgotpass.html";
         }
 
         UserEntity user = userRepository.findByEmail(email);
@@ -141,9 +140,7 @@ public class ProfileService {
         // Send code to user
         MailSender mailSender = new MailSender(user.getEmail(), ServiceConst.MESSAGE_SUBJECT,
                 String.format(ServiceConst.MESSAGE_TEXT, securityCode));
-//        mailSender.send();
-
-        System.out.println(securityCode);
+        mailSender.send();
 
         addEmailToCookies(response, email);
         addCodeToCookies(response, securityCode);
@@ -152,9 +149,8 @@ public class ProfileService {
     }
 
     public void addEmailToCookies(HttpServletResponse response, String email) {
-        if (userRepository.findByEmail(email) == null) {
+        if (userRepository.findByEmail(email) == null)
             return;
-        }
 
         // Create new cookie
         Cookie emailCookie = new Cookie("email", email);
@@ -189,14 +185,14 @@ public class ProfileService {
     }
 
     public String getEnterCodePage(Model model) {
-        return "entercode";
+        return "entercode.html";
     }
 
     public String getUserCode(HttpServletResponse response, String email,
                               String securityCode, String userCode, Model model) {
         if (!userCode.equals(securityCode)) {
-            model.addAttribute("wrongCodeMessage", "Code is wrong");
-            return "entercode";
+            model.addAttribute("wrongCodeMessage", ServiceConst.CODE_MESSAGE);
+            return "entercode.html";
         }
 
         LoginService.makeLogged(response, userRepository.findByEmail(email).getUsername());

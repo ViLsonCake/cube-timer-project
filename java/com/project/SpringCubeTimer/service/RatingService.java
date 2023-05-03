@@ -60,7 +60,7 @@ public class RatingService {
         model.addAttribute("users", topUsers);
         model.addAttribute("username", cookieUsername);
 
-        return "rating";
+        return "rating.html";
     }
 
     public String getPersonalBest(List<SolveEntity> userSolves) {
