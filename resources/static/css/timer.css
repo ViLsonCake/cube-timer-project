@@ -84,8 +84,16 @@ a[class] {
   justify-content: center;
 }
 
+.avg.hide {
+    opacity: 0;
+}
+
 .avg-of {
   font-size: 40px;
+}
+
+.avg-of.hide {
+    opacity: 0;
 }
 
 .timer {

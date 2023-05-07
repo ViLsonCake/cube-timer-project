@@ -66,7 +66,6 @@ document.addEventListener('keyup', function(event) {
         timerStartedNow = false;
 
     element.classList.remove('ready');
-
 });
 
 document.addEventListener('keydown', function(event) {
@@ -82,18 +81,36 @@ document.addEventListener('keydown', function(event) {
         pause();
         element.classList.remove('ready');
 
+        // Add last solve time to cookie
+        document.cookie = `lastSolve=${timer.innerText}; max-age=${365 * 24 * 60 * 60}`
+
         // Make string body <scramble>,<time>,<cube>
         let body = scramble.innerText + ',' + timer.innerText + 
         ',' + cube.innerText;
 
-        sendPost('http://localhost:8080/timer', JSON.stringify(body)).then(data => console.log(data));
+        if (!findSaveSolveCookie())
+            sendPost('http://localhost:8080/timer', JSON.stringify(body)).then(data => console.log(data));
+
         location.reload();
     }
     // Timer ready to start
     else if (event.code == 'Space' && (!timerStartedNow))
         element.classList.add('ready')
-
-
 });
 
+function findSaveSolveCookie() {
+    const cookies = document.cookie.split(';')
 
+    for (let cookie of cookies) {
+        if (cookie.includes('saveSolve')) {
+            const cookieValue = cookie.split('=')
+
+            if (JSON.parse(cookieValue))
+                return true
+
+            return false
+        }
+    }
+
+    return false
+}

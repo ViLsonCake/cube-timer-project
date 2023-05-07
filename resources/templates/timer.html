@@ -23,7 +23,7 @@
       <a id="settings" onclick="openModal()" data-modal-target="#modal" class="link-button">
         <img class="settings" src="/img/settings.svg" alt="">
       </a>
-      <div class="modal active" id="modal">
+      <div class="modal" id="modal">
         <div class="modal-header">
           <div class="title">
             <span>Settings</span>
@@ -32,17 +32,17 @@
         </div>
         <div class="modal-body">
           <div class="switch-box">
-            <span class="text">hui</span>
+            <span class="text">Hide avg</span>
             <label class="switch">
-              <input type="checkbox">
-              <span class="slider round"></span>
+              <input type="checkbox" id="hideAvg-box">
+              <span class="slider round" id="hideAvg"></span>
           </label>
           </div>
           <div class="switch-box">
-            <span class="text">hui</span>
+            <span class="text">Don't save solve</span>
             <label class="switch">
-              <input type="checkbox">
-              <span class="slider round"></span>
+              <input type="checkbox" id="saveSolve-box">
+              <span class="slider round" id="saveSolve"></span>
           </label>
           </div>
         </div>
@@ -74,15 +74,17 @@
         <div id="timer" class="timer" th:text="${lastSolveTime}">
           00:00
         </div>
-        <div class="avg-of">
-          <span th:text="'ao5: ' + ${averageOf5}"></span>
-        </div>
-        <div class="avg-of12">
-          <span class="avg-of" th:text="'ao12: ' + ${averageOf12}"></span>
+        <div class="avg">
+          <div class="avg-of">
+            <span th:text="'ao5: ' + ${averageOf5}"></span>
+          </div>
+          <div class="avg-of12">
+            <span class="avg-of" th:text="'ao12: ' + ${averageOf12}"></span>
+          </div>
         </div>
       </div>
     </section>
-  <div class="active" id="overlay"></div>
+  <div class="" id="overlay"></div>
   <script src="/js/script.js"></script>
   <script src="/js/popup.js"></script>
 </body>
