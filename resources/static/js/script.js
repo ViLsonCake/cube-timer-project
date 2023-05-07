@@ -17,10 +17,7 @@ function minimizeScrambleSizeIfNeed() {
         scrambleElement.classList.add('mini');
 }
 
-
 function startTimer() {
-    scrambleElement.classList.add('mini');
-
     let time = 0;
 
     timer = setInterval(() => {
@@ -59,7 +56,10 @@ function sendPost(url, body = null) {
 
 document.addEventListener('keyup', function(event) {
     if (event.code == 'Space' && (!timerStartedNow) && anyKeyPressed) {
+        timerOnFullScreen()
+
         startTimer();
+
         timerStartedNow = true;
     } else
         timerStartedNow = false;
@@ -101,15 +101,49 @@ function findSaveSolveCookie() {
     const cookies = document.cookie.split(';')
 
     for (let cookie of cookies) {
-        if (cookie.includes('saveSolve')) {
-            const cookieValue = cookie.split('=').at(-1)  // Get value: 'true'/'false'
+        const cookieValue = cookie.split('=').at(-1)  // Get value: 'true'/'false'
 
-            if (JSON.parse(cookieValue))
-                return true
-
-            return false
-        }
+        if (cookie.includes('saveSolve')) 
+            return JSON.parse(cookieValue)
     }
 
     return false
+}
+
+function timerOnFullScreen() {
+    const cookies = document.cookie.split(';')
+
+    for (let cookie of cookies) {
+        if (cookie.includes('timerFullScreen')) {
+            const cookieValue = cookie.split('=').at(-1)  // Get value: 'true'/'false'
+
+            // Find all elements to hide
+            const navBarElement = document.querySelector('.header'),
+            scrambleElement = document.getElementById('scramble'),
+            averageElement = document.querySelector('.avg'),
+            timerElement = document.getElementById('timer')
+
+            const timerCheckBox = document.getElementById('timerFullScreen-box')
+
+            if (JSON.parse(cookieValue)) {
+                timerCheckBox.checked = true
+
+                // Hide all elements
+                navBarElement.classList.add('hide')
+                scrambleElement.classList.add('hide')
+                averageElement.classList.add('hide')
+                
+                timerElement.classList.add('max')
+            } else {
+                timerCheckBox.checked = false
+
+                // Hide all elements
+                navBarElement.classList.remove('hide')
+                scrambleElement.classList.remove('hide')
+                averageElement.classList.remove('hide')
+                
+                timerElement.classList.remove('max')
+            }
+        }
+    }
 }

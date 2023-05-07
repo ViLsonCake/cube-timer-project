@@ -17,6 +17,10 @@ a[class] {
   min-height: 60px;
 }
 
+.header.hide {
+    opacity: 0;
+}
+
 .line {
   min-width: 220px;
   height: 1px;
@@ -92,12 +96,12 @@ a[class] {
   font-size: 40px;
 }
 
-.avg-of.hide {
-    opacity: 0;
-}
-
 .timer {
   font-size: 200px;
+}
+
+.timer.max {
+  font-size: 300px;
 }
 
 .timer.ready {
@@ -125,6 +129,10 @@ a[class] {
   font-size: 28px;
   color: #ababab;
   text-align: center;
+}
+
+.scramble.hide {
+    opacity: 0;
 }
 
 .dropdown {

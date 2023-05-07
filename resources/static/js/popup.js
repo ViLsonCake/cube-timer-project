@@ -47,13 +47,17 @@ function getAllCookies() {
     for (let cookie of cookies) {
         if (cookie.includes('hideAvg')) {
             cookieValue = cookie.split('=').at(-1)  // Get value: 'true'/'false'
-            
+
             hideAvg(cookieValue)
         } else if (cookie.includes('saveSolve')) {
             cookieValue = cookie.split('=').at(-1)  // Get value: 'true'/'false'
 
             doNotSaveSolve(cookieValue)
-        }
+        } else if (cookie.includes('timerFullScreen')) {
+            cookieValue = cookie.split('=').at(-1)  // Get value: 'true'/'false'
+
+            timerOnFullScreenCheck(cookieValue)
+        }    
     }
 }
 
@@ -74,11 +78,19 @@ function hideAvg(cookieValue) {
 function doNotSaveSolve(cookieValue) {
     const solveCheckbox = document.getElementById('saveSolve-box')
 
-    if (JSON.parse(cookieValue)) {
+    if (JSON.parse(cookieValue)) 
         solveCheckbox.checked = true
-    } else {
+    else 
         solveCheckbox.checked = false
-    }
+}
+
+function timerOnFullScreenCheck(cookieValue) {
+    const timerCheckbox = document.getElementById('timerFullScreen-box')
+
+    if (JSON.parse(cookieValue)) 
+        timerCheckbox.checked = true
+    else 
+        timerCheckbox.checked = false
 }
 
 getAllCookies()
