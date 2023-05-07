@@ -12,7 +12,6 @@ document.onload = function() {
 
 minimizeScrambleSizeIfNeed();
 
-
 function minimizeScrambleSizeIfNeed() {
     if (scrambleElement.innerText.split(' ').length > 40)
         scrambleElement.classList.add('mini');
@@ -90,7 +89,7 @@ document.addEventListener('keydown', function(event) {
 
         if (!findSaveSolveCookie())
             sendPost('http://localhost:8080/timer', JSON.stringify(body)).then(data => console.log(data));
-
+        
         location.reload();
     }
     // Timer ready to start
@@ -103,7 +102,7 @@ function findSaveSolveCookie() {
 
     for (let cookie of cookies) {
         if (cookie.includes('saveSolve')) {
-            const cookieValue = cookie.split('=')
+            const cookieValue = cookie.split('=').at(-1)  // Get value: 'true'/'false'
 
             if (JSON.parse(cookieValue))
                 return true

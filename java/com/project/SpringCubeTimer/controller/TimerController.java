@@ -27,8 +27,9 @@ public class TimerController {
     @GetMapping("/{cube}")
     public String timerPage(@CookieValue(name = "username", defaultValue = "UNKNOWN") String username,
                             @CookieValue(name = "lastSolve", defaultValue = "00:00") String lastSolveTime,
+                            @CookieValue(name = "saveSolve", defaultValue = "false") String disabledSaveMode,
                             @PathVariable("cube") String cube, Model model) throws IOException, CubeNotValidException {
-        return timerService.timerPage(model, lastSolveTime, cube, username);
+        return timerService.timerPage(lastSolveTime, disabledSaveMode, cube, username, model);
     }
 
     @PostMapping(consumes = MediaType.TEXT_PLAIN_VALUE)

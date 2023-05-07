@@ -150,7 +150,7 @@ public class TimerService {
         return solveEntity.getTime();
     }
 
-    public String timerPage(Model model, String lastSolveTime, String cube, String username) throws IOException, CubeNotValidException {
+    public String timerPage(String lastSolveTime, String disabledSaveMode, String cube, String username, Model model) throws IOException, CubeNotValidException {
         if (username.equals("UNKNOWN"))
             return "redirect:/login";
 
@@ -158,8 +158,8 @@ public class TimerService {
         model.addAttribute("cube", cube);
         model.addAttribute("username", username);
         model.addAttribute("lastSolveTime", lastSolveTime);
-        model.addAttribute("averageOf5", getAverageOf5(username, cube));
-        model.addAttribute("averageOf12", getAverageOf12(username, cube));
+        model.addAttribute("averageOf5", disabledSaveMode.equals("true") ? "--:--" : getAverageOf5(username, cube));
+        model.addAttribute("averageOf12", disabledSaveMode.equals("true") ? "--:--" : getAverageOf12(username, cube));
         model.addAttribute("scramble", getRandomScramble(cube));
 
         return "timer.html";
