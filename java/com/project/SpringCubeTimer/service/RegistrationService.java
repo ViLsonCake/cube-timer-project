@@ -11,12 +11,9 @@ import org.springframework.ui.Model;
 public class RegistrationService {
 
     private final UserRepository userRepository;
-    private final LoginService loginService;
-
     @Autowired
-    public RegistrationService(UserRepository userRepository, LoginService loginService) {
+    public RegistrationService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.loginService = loginService;
     }
 
     public String register(UserEntity user, String confirmPassword, HttpServletResponse response, Model model) {
@@ -40,7 +37,7 @@ public class RegistrationService {
 
         // Save user to db and cookie session
         userRepository.save(user);
-        loginService.makeLogged(response, user.getUsername());
+        LoginService.makeLogged(response, user.getUsername());
 
         return "redirect:/timer/3x3";
 

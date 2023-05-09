@@ -1,7 +1,6 @@
-package com.project.SpringCubeTimer.sendMail;
+package com.project.SpringCubeTimer.utils;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -17,7 +16,7 @@ public class MailSender {
     @Value("SenderPassword")
     private String password;
 
-    private String recipient, subject, text, host, smtpPort;
+    private final String recipient, subject, text, host, smtpPort;
 
     public MailSender(String recipient, String subject, String text) {
         this.recipient = recipient;

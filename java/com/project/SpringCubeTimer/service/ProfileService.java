@@ -4,7 +4,7 @@ import com.project.SpringCubeTimer.entity.SolveEntity;
 import com.project.SpringCubeTimer.entity.UserEntity;
 import com.project.SpringCubeTimer.repository.SolveRepository;
 import com.project.SpringCubeTimer.repository.UserRepository;
-import com.project.SpringCubeTimer.sendMail.MailSender;
+import com.project.SpringCubeTimer.utils.MailSender;
 import com.project.SpringCubeTimer.service.serviceConst.ServiceConst;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
