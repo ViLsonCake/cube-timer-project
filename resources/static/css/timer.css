@@ -1,5 +1,5 @@
 body {
-  background: linear-gradient(180deg, var(--blue-gradient) 35%, var(--purple-gradient) 100%);
+  background: linear-gradient(180deg, var(--blue-gradient) 35%, var(--pink-gradient) 100%);
   color: #fff;
 }
 
@@ -199,7 +199,7 @@ a[class] {
 }
 
 .modal {
-  color: #000;
+  color: #fff;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -215,11 +215,12 @@ a[class] {
 
 .modal.active {
   transform: translate(-50%, -50%) scale(1);
+  background-color: var(--blackPurple-color);
 }
 
 .modal-header {
   align-items: center;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #fff;
 }
 
 .title {
@@ -235,6 +236,8 @@ a[class] {
   background: none;
   cursor: pointer;
   font-size: 20px;
+  color: #fff;
+  margin-bottom: 5px;
 }
 
 .modal-body {
@@ -323,8 +326,9 @@ input:checked + .slider:before {
 .switch-box {
   display: flex;
   align-items: center;
-  width: 150px;
+  max-width: 250px;
   margin: 5px;
+  justify-content: space-between;
 }
 
 .text {
