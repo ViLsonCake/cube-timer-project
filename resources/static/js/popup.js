@@ -5,12 +5,12 @@ const popupSettingsElements = document.querySelectorAll('.slider.round');
 // Close popup
 overlayElement.addEventListener('click', () => {
     closeModal()
-    location.reload()
 });
 
 function closeModal() {
     modalElement.classList.remove('active')
     overlayElement.classList.remove('active')
+    location.reload()
 }
 
 function openModal() {
