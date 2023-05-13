@@ -6,6 +6,7 @@ import com.project.SpringCubeTimer.repository.SolveRepository;
 import com.project.SpringCubeTimer.repository.UserRepository;
 import com.project.SpringCubeTimer.utils.MailSender;
 import com.project.SpringCubeTimer.service.serviceConst.ServiceConst;
+import com.project.SpringCubeTimer.utils.PasswordEncoder;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,7 +105,7 @@ public class ProfileService {
 
         // Find user change password and save
         UserEntity user = userRepository.findByUsername(username);
-        user.setPassword(password);
+        user.setPassword(PasswordEncoder.encode(password));
 
         userRepository.save(user);
 

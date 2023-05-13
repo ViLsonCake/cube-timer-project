@@ -2,6 +2,7 @@ package com.project.SpringCubeTimer.service;
 
 import com.project.SpringCubeTimer.repository.UserRepository;
 import com.project.SpringCubeTimer.service.serviceConst.ServiceConst;
+import com.project.SpringCubeTimer.utils.PasswordEncoder;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class LoginService {
     public String loginUser(String username, String password, HttpServletResponse response, Model model) {
         // If user not found or password is incorrect
         if (userRepository.findByUsername(username) == null ||
-                (!userRepository.findByUsername(username).getPassword().equals(password))) {
+                (!userRepository.findByUsername(username).getPassword().equals(PasswordEncoder.encode(password)))) {
             model.addAttribute("loginError", ServiceConst.LOGIN_MESSAGE);
             return "login.html";
         }

@@ -2,6 +2,7 @@ package com.project.SpringCubeTimer.service;
 
 import com.project.SpringCubeTimer.entity.UserEntity;
 import com.project.SpringCubeTimer.repository.UserRepository;
+import com.project.SpringCubeTimer.utils.PasswordEncoder;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,9 @@ public class RegistrationService {
             model.addAttribute("invalidName", "Name is not valid");
             return "registration.html";
         }
+
+        // Encode password
+        user.setPassword(PasswordEncoder.encode(user.getPassword()));
 
         // Save user to db and cookie session
         userRepository.save(user);
