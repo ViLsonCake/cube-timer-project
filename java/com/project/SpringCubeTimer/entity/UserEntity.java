@@ -22,7 +22,6 @@ public class UserEntity {
     private String username;
 
     @NotEmpty(message = ValidationConst.PASSWORD_EMPTY_MESSAGE)
-    @Pattern(regexp = ValidationConst.REGEX_PASSWORD_PATTERN, message = ValidationConst.PASSWORD_NOT_VALID_MESSAGE)
     private String password;
 
     @NotEmpty(message = ValidationConst.EMAIL_EMPTY_MESSAGE)

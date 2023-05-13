@@ -1,12 +1,16 @@
 package com.project.SpringCubeTimer.service;
 
 import com.project.SpringCubeTimer.entity.UserEntity;
+import com.project.SpringCubeTimer.entity.consts.ValidationConst;
 import com.project.SpringCubeTimer.repository.UserRepository;
 import com.project.SpringCubeTimer.utils.PasswordEncoder;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class RegistrationService {
@@ -21,18 +25,17 @@ public class RegistrationService {
 
         // Check invalid values
         if (!user.getPassword().equals(confirmPassword)) {
-            model.addAttribute("passwordError", "Password don't equals");
+            model.addAttribute("passwordNotMatch", ValidationConst.PASSWORDS_NOT_MATCH_MESSAGE);
             return "registration.html";
-        }
-
-        if (userRepository.findByUsername(user.getUsername()) != null ||
+        } else if (userRepository.findByUsername(user.getUsername()) != null ||
                 userRepository.findByEmail(user.getEmail()) != null) {
-            model.addAttribute("UserExistError", "User already exist");
+            model.addAttribute("UserExistError", ValidationConst.USER_ALREADY_EXIST_MESSAGE);
             return "registration.html";
-        }
-
-        if (user.getUsername().equals("UNKNOWN")) {
-            model.addAttribute("invalidName", "Name is not valid");
+        } else if (user.getUsername().equals("UNKNOWN")) {
+            model.addAttribute("invalidName", ValidationConst.USERNAME_NOT_VALID_MESSAGE);
+            return "registration.html";
+        } else if (!isValidPassword(user.getPassword())) {
+            model.addAttribute("invalidPassword", ValidationConst.PASSWORD_NOT_VALID_MESSAGE);
             return "registration.html";
         }
 
@@ -45,5 +48,12 @@ public class RegistrationService {
 
         return "redirect:/timer/3x3";
 
+    }
+
+    public boolean isValidPassword(String password) {
+        Pattern passwordPattern = Pattern.compile(ValidationConst.REGEX_PASSWORD_PATTERN);
+        Matcher passwordMatcher = passwordPattern.matcher(password);
+
+        return passwordMatcher.find();
     }
 }
