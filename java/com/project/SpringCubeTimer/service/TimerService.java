@@ -98,7 +98,8 @@ public class TimerService {
 
         if (RequestBodyValidation.isValidTime(requestParameters[1]) && isValidCube(requestParameters[2])) {
             // Create output solve entity if request body is valid
-            SolveEntity solve = new SolveEntity(requestParameters[0], requestParameters[1], requestParameters[2], userRepository.findByUsername(username));
+            SolveEntity solve = new SolveEntity(requestParameters[0], requestParameters[1], requestParameters[2],
+                    ValidationConst.PENALTY_DEFAULT_VALUE, userRepository.findByUsername(username));
 
             // Save solve
             solveRepository.save(solve);
@@ -111,12 +112,15 @@ public class TimerService {
 
         SolveEntity solve = solveRepository.findById(solveId).get();
 
-        String newTime = convertToTime(toSeconds(solve.getTime()) + 200);
+        if (solve.getPenalty().equals(ValidationConst.PENALTY_DEFAULT_VALUE)) {
+            String newTime = convertToTime(toSeconds(solve.getTime()) + 200);
 
-        solve.setTime(newTime);
-
-        solveRepository.save(solve);
-
+            solve.setPenalty(newTime);
+            solveRepository.save(solve);
+        } else {
+            solve.setPenalty(ValidationConst.PENALTY_DEFAULT_VALUE);
+            solveRepository.save(solve);
+        }
         return "redirect:/profile?cube=3x3&page=" + page;
     }
 
@@ -125,9 +129,14 @@ public class TimerService {
             return "redirect:/profile?cube=3x3&page=0";
 
         SolveEntity solve = solveRepository.findById(solveId).get();
-        solve.setTime("DNF");
-        solveRepository.save(solve);
 
+        if (solve.getPenalty().equals(ValidationConst.PENALTY_DEFAULT_VALUE)) {
+            solve.setPenalty("DNF");
+            solveRepository.save(solve);
+        } else {
+            solve.setPenalty(ValidationConst.PENALTY_DEFAULT_VALUE);
+            solveRepository.save(solve);
+        }
         return "redirect:/profile?cube=3x3&page=" + page;
     }
 }

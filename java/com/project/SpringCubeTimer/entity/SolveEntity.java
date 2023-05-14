@@ -23,16 +23,21 @@ public class SolveEntity {
     @Column(name = "time")
     private String time;
 
+    @NotEmpty
+    @Column(name = "penalty")
+    private String penalty;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
     public SolveEntity() {}
 
-    public SolveEntity(String scramble, String time, String cube, UserEntity user) {
+    public SolveEntity(String scramble, String time, String cube, String penalty, UserEntity user) {
         this.scramble = scramble;
         this.time = time;
         this.cube = cube;
+        this.penalty = penalty;
         this.user = user;
     }
 
@@ -66,6 +71,14 @@ public class SolveEntity {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getPenalty() {
+        return penalty;
+    }
+
+    public void setPenalty(String penalty) {
+        this.penalty = penalty;
     }
 
     public UserEntity getUser() {
