@@ -1,6 +1,7 @@
 package com.project.SpringCubeTimer.service;
 
 import com.project.SpringCubeTimer.entity.SolveEntity;
+import com.project.SpringCubeTimer.entity.consts.ValidationConst;
 import com.project.SpringCubeTimer.exception.CubeNotValidException;
 import com.project.SpringCubeTimer.repository.SolveRepository;
 import com.project.SpringCubeTimer.repository.UserRepository;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import java.io.IOException;
+import java.net.ConnectException;
 
 import static com.project.SpringCubeTimer.validate.RequestBodyValidation.isValidCube;
 
@@ -40,9 +42,12 @@ public class TimerService {
 
         String url = constApiUrl + cube;
 
-        Document document = Jsoup.connect(url).get();
-
-        return document.text();
+        try {
+            Document document = Jsoup.connect(url).get();
+            return document.text();
+        } catch (ConnectException e) {
+            return ValidationConst.FAILED_TO_GET_SCRAMBLE_MESSAGE;
+        }
     }
 
     public static int toSeconds(String time) {

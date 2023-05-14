@@ -6,10 +6,6 @@ let timerStartedNow = false,
 timerStoppedNow = false,
 anyKeyPressed = false;
 
-document.onload = function() {
-    scrambleElement.innerText = getRandomScramble(document.getElementById('cube'));
-}
-
 minimizeScrambleSizeIfNeed();
 
 function minimizeScrambleSizeIfNeed() {
@@ -87,7 +83,7 @@ document.addEventListener('keydown', function(event) {
         let body = scramble.innerText + ',' + timer.innerText + 
         ',' + cube.innerText;
 
-        if (!findSaveSolveCookie())
+        if (!findSaveSolveCookie() && scrambleElement.innerText !== "Failed to get scramble")
             sendPost('http://localhost:8080/timer', JSON.stringify(body)).then(data => console.log(data));
         
         location.reload();
