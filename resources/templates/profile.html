@@ -24,7 +24,8 @@
     <div class="left">
       <div th:each="solve : ${solves}" class="block-info">
         <div class="time">
-          <span th:text="${solve.getPenalty().equals('None') ? solve.getTime() : solve.getPenalty()}"></span>
+          <span th:text="${solve.getPenalty().equals('None') ? solve.getTime() :
+          solve.getPenalty().equals('DNF') ? solve.getPenalty() : solve.getPenalty() + '+'}"></span>
         </div>
         <div class="scramble">
           <input type="text" readonly th:value="${solve.getScramble()}">
