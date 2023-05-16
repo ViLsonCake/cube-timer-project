@@ -50,4 +50,10 @@ public class TimerController {
         return timerService.makeDNF(solveId, page);
     }
 
+    @GetMapping("/delete/{solveId}/{page}/{cube}")
+    public String deleteSolve(@PathVariable Long solveId,
+                              @PathVariable("page") Integer page,
+                              @PathVariable("cube") String cube) {
+        return timerService.deleteSolve(solveId, page, cube);
+    }
 }

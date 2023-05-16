@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../static/css/main.css">
-  <link rel="stylesheet" href="../static/css/profile.css">
-  <link rel="stylesheet" href="../static/css/reset.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/profile.css">
+  <link rel="stylesheet" href="/css/reset.css">
   <link rel="icon" href="/img/cube-logo.png">
   <title>Profile</title>
 </head>
@@ -30,12 +30,10 @@
         <div class="scramble">
           <input type="text" readonly th:value="${solve.getScramble()}">
           <div class="link">
-            <button th:href="@{/timer/plus2(solveId = ${solve.getSolveId()}, page = ${page})}" class="link-button">+2</button>
-            <button th:href="@{/timer/DNF(solveId = ${solve.getSolveId()}, page = ${page})}" class="link-button">DNF</button>
+            <a th:href="@{/timer/plus2(solveId = ${solve.getSolveId()}, page = ${page})}" class="link-button">+2</a>
+            <a th:href="@{/timer/DNF(solveId = ${solve.getSolveId()}, page = ${page})}" class="link-button">DNF</a>
           </div>
-          <button class="link-button first">
-            <img src="../static/img/trash.svg" alt="">
-          </button>
+        <button th:name="${solve.getSolveId() + '/' + page + '/' + cube}" class="link-button first"><img src="/img/trash.svg" alt=""></button>
         </div>
       </div>
     </div>
@@ -121,14 +119,20 @@
       document.location.href = '/profile?cube=' + cube + '&page=0';
     }
 
-    let pattern = /=.+&/gi;
+    let pattern = /=.+&/gi,
+    str = document.location.href.match(pattern).at(0),
+    cube = str.substring(1, str.length - 1)
+    document.getElementById(cube).checked = true
 
-    let str = document.location.href.match(pattern).at(0);
+    const buttons = document.querySelectorAll('.link-button.first')
 
-    let cube = str.substring(1, str.length - 1);
-
-    document.getElementById(cube).checked = true;
-
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        if(confirm('Are you sure you want to delete the solve?')) 
+          window.location.href = "http://localhost:8080/timer/delete/" + button.getAttribute('name');
+      
+      })
+    })
   </script>
 </body>
 </html>

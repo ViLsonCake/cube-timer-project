@@ -139,4 +139,13 @@ public class TimerService {
         }
         return "redirect:/profile?cube=3x3&page=" + page;
     }
+
+    public String deleteSolve(Long id, Integer page, String cube) {
+        if (!solveRepository.existsById(id))
+            return "redirect:/profile";
+
+        solveRepository.deleteById(id);
+
+        return String.format("redirect:/profile?cube=%s&page=%s", cube, page);
+    }
 }
