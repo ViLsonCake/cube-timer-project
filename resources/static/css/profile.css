@@ -58,7 +58,7 @@ a[class] {
 .link {
   margin-top: 20px;
   float: right;
-  width: 100px;
+  min-width: 100px;
   display: flex;
   justify-content: space-between;
 }
@@ -81,6 +81,23 @@ a[class] {
 
 .scramble {
   width: 201px;
+}
+
+.link-button {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.link-button.first {
+  margin-top: 19px;
+}
+
+.link-button.first img {
+  background-color: #ffffff50;
+  padding: 2px;
+  border-radius: 5px;
 }
 
 .scramble a {
