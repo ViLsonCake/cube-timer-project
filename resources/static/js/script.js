@@ -33,20 +33,15 @@ function pause() {
     clearInterval(timer)
 }
 
-function sendPost(url, body = null) {
-    const headersParam = {
-        'Content-Type': 'application/json',
-        "Access-Control-Allow-Origin": '*',
-        "Access-Control-Allow-Credentials" : true,
-    }
-
+function sendPost(url, body) {
     return fetch(url, {
         method: 'POST',
-        body: body,
-        headers: headersParam,
-        mode: 'no-cors'
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
     }).then(response => {
-        return response;
+        return response.json();
     })
 }
 
@@ -79,12 +74,15 @@ document.addEventListener('keydown', function(event) {
         // Add last solve time to cookie
         document.cookie = `lastSolve=${timer.innerText}; max-age=${365 * 24 * 60 * 60}`
 
-        // Make string body <scramble>,<time>,<cube>
-        let body = scramble.innerText + ',' + timer.innerText + 
-        ',' + cube.innerText;
+        // Create body 
+        const body = {
+            time: timer.innerText,
+            scramble: scramble.innerText,
+            cube: cube.innerText
+        }
 
         if (!findSaveSolveCookie() && scrambleElement.innerText !== "Failed to get scramble")
-            sendPost('http://localhost:8080/timer', JSON.stringify(body)).then(data => console.log(data));
+            sendPost('http://localhost:8080/timer', body)
         
         location.reload();
     }

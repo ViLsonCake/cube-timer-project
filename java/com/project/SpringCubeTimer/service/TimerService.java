@@ -3,6 +3,7 @@ package com.project.SpringCubeTimer.service;
 import com.project.SpringCubeTimer.entity.SolveEntity;
 import com.project.SpringCubeTimer.entity.consts.ValidationConst;
 import com.project.SpringCubeTimer.exception.CubeNotValidException;
+import com.project.SpringCubeTimer.model.SolveModel;
 import com.project.SpringCubeTimer.repository.SolveRepository;
 import com.project.SpringCubeTimer.repository.UserRepository;
 import com.project.SpringCubeTimer.utils.TimerUtils;
@@ -88,17 +89,10 @@ public class TimerService {
         return "timer.html";
     }
 
-    public void saveSolve(String username, String body) {
-
-        // Remove first and last character
-        String validBody = body.substring(1, body.length() - 1);
-
-        // Split the request output
-        String[] requestParameters = validBody.split(",");
-
-        if (RequestBodyValidation.isValidTime(requestParameters[1]) && isValidCube(requestParameters[2])) {
+    public void saveSolve(String username, SolveModel body) {
+        if (RequestBodyValidation.isValidTime(body.getTime()) && isValidCube(body.getCube())) {
             // Create output solve entity if request body is valid
-            SolveEntity solve = new SolveEntity(requestParameters[0], requestParameters[1], requestParameters[2],
+            SolveEntity solve = new SolveEntity(body.getScramble(), body.getTime(), body.getCube(),
                     ValidationConst.PENALTY_DEFAULT_VALUE, userRepository.findByUsername(username));
 
             // Save solve

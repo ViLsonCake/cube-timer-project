@@ -1,6 +1,7 @@
 package com.project.SpringCubeTimer.controller;
 
 import com.project.SpringCubeTimer.exception.CubeNotValidException;
+import com.project.SpringCubeTimer.model.SolveModel;
 import com.project.SpringCubeTimer.repository.UserRepository;
 import com.project.SpringCubeTimer.service.TimerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +33,9 @@ public class TimerController {
         return timerService.timerPage(lastSolveTime, disabledSaveMode, cube, username, model);
     }
 
-    @PostMapping(consumes = MediaType.TEXT_PLAIN_VALUE)
-    public void getRequestFromJS(@CookieValue(name = "username", defaultValue = "UNKNOWN") String username,
-                           @RequestBody String body) {
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void getSolveFromFront(@CookieValue(name = "username", defaultValue = "UNKNOWN") String username,
+                           @RequestBody SolveModel body) {
         timerService.saveSolve(username, body);
     }
 
