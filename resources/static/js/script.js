@@ -1,16 +1,19 @@
 let timer,
-element = document.getElementById('timer');
+waitASecond,
+element = document.getElementById('timer'),
 scrambleElement = document.getElementById('scramble');
 
 let timerStartedNow = false,
 timerStoppedNow = false,
+keyPressedNeedTime = false,
+spacePressed = false,
 anyKeyPressed = false;
 
 minimizeScrambleSizeIfNeed();
 
 function minimizeScrambleSizeIfNeed() {
     if (scrambleElement.innerText.split(' ').length > 40)
-        scrambleElement.classList.add('mini');
+        scrambleElement.classList.add('mini')
 }
 
 function startTimer() {
@@ -22,7 +25,7 @@ function startTimer() {
     seconds = Math.floor((time / 100) % 60);
     millis = time % 100;
 
-    element.innerHTML = (minutes < 10 ? minutes == 0 ? "" : "0" + minutes + ":" : minutes + ":") +
+    element.innerText = (minutes < 10 ? minutes == 0 ? "" : "0" + minutes + ":" : minutes + ":") +
                 (seconds < 10 ? "0" + seconds + ":" : seconds + ":") +
                 (millis < 10 ? "0" + millis : millis);
     time++;
@@ -41,21 +44,26 @@ function sendPost(url, body) {
         },
         body: JSON.stringify(body)
     }).then(response => {
-        return response.json();
+        return response.json()
     })
 }
 
 document.addEventListener('keyup', function(event) {
-    if (event.code == 'Space' && (!timerStartedNow) && anyKeyPressed) {
-        timerOnFullScreen()
+    if (event.code == 'Space' && (!timerStartedNow) && anyKeyPressed && keyPressedNeedTime) {
+        spacePressed = false
+        keyPressedNeedTime = false
 
+        timerOnFullScreen()
         startTimer();
 
-        timerStartedNow = true;
+        timerStartedNow = true
     } else
-        timerStartedNow = false;
+        timerStartedNow = false
 
-    element.classList.remove('ready');
+    clearTimeout(waitASecond)
+
+    element.classList.remove('ready')
+    element.classList.remove('pre-ready')
 });
 
 document.addEventListener('keydown', function(event) {
@@ -63,13 +71,11 @@ document.addEventListener('keydown', function(event) {
         anyKeyPressed = true;
     // Timer stopped
     if (event.code == 'Space' && timerStartedNow) {
-
         let scramble = document.getElementById('scramble'),
         timer = document.getElementById('timer'),
-        cube = document.getElementById('cube');
+        cube = document.getElementById('cube')
 
-        pause();
-        element.classList.remove('ready');
+        pause()
 
         // Add last solve time to cookie
         document.cookie = `lastSolve=${timer.innerText}; max-age=${365 * 24 * 60 * 60}`
@@ -87,8 +93,19 @@ document.addEventListener('keydown', function(event) {
         location.reload();
     }
     // Timer ready to start
-    else if (event.code == 'Space' && (!timerStartedNow))
-        element.classList.add('ready')
+    else if (event.code == 'Space' && (!timerStartedNow)) {
+        spacePressed = true
+
+        element.classList.add('pre-ready')
+        waitASecond = setTimeout(() => {
+            keyPressedNeedTime = true
+        }, 600);
+
+        if (keyPressedNeedTime) {
+            element.classList.remove('pre-ready') 
+            element.classList.add('ready')
+        }    
+    }    
 });
 
 function findSaveSolveCookie() {

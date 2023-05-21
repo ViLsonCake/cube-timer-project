@@ -109,6 +109,11 @@ a[class] {
   color: #359F51;
 }
 
+.timer.pre-ready {
+  font-size: 200px;
+  color: #C71717;
+}
+
 .input-box {
   margin-right: 25px;
 }
